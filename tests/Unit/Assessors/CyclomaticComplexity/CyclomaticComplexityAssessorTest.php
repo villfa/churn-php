@@ -86,6 +86,13 @@ class CyclomaticComplexityAssessorTest extends BaseTestCase
         $this->assertEquals(2, $this->assess('tests/Unit/Assessors/CyclomaticComplexity/Assets/ClassWithLogicalOr.inc'));        
     }
 
+    /** @test **/
+    public function a_file_with_only_comments_should_return_zero()
+    {
+        // PHPLOC reports this file as having zero. Will have to double check this.
+        $this->assertEquals(0, $this->assess('tests/Unit/Assessors/CyclomaticComplexity/Assets/FileWithOnlyComments.inc'));
+    }
+
     protected function assess($filename)
     {
         return (new CyclomaticComplexityAssessor)->assess($filename);
