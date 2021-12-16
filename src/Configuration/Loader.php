@@ -32,7 +32,7 @@ class Loader
      */
     public static function fromPath(string $confPath, bool $isDefaultValue): Config
     {
-        $confPath = self::normalizePath($$originalConfPath = $confPath);
+        $confPath = self::normalizePath($originalConfPath = $confPath);
 
         if (false !== $confPath && \is_readable($confPath)) {
             $config = new Config($confPath);
