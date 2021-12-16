@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
 /**
  * @internal
  */
-final class ParallelJobs extends AbstractValidator
+final class ParallelJobs extends BaseValidator
 {
     /**
      * Class constructor.

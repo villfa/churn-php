@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
 /**
  * @internal
  */
-final class DirectoriesToScan extends AbstractValidator
+final class DirectoriesToScan extends BaseValidator
 {
     /**
      * Class constructor.

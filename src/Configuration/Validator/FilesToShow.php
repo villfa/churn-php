@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
 /**
  * @internal
  */
-final class FilesToShow extends AbstractValidator
+final class FilesToShow extends BaseValidator
 {
     /**
      * Class constructor.

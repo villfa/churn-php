@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
 /**
  * @internal
  */
-final class MaxScoreThreshold extends AbstractValidator
+final class MaxScoreThreshold extends BaseValidator
 {
     /**
      * Class constructor.

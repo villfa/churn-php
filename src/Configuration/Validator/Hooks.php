@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
 /**
  * @internal
  */
-final class Hooks extends AbstractValidator
+final class Hooks extends BaseValidator
 {
     /**
      * Class constructor.

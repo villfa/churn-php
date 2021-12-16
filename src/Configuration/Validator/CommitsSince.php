@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
 /**
  * @internal
  */
-final class CommitsSince extends AbstractValidator
+final class CommitsSince extends BaseValidator
 {
     /**
      * Class constructor.

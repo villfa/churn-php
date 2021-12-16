@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
 /**
  * @internal
  */
-final class CachePath extends AbstractValidator
+final class CachePath extends BaseValidator
 {
     /**
      * Class constructor.

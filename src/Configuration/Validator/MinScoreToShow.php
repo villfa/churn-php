@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
 /**
  * @internal
  */
-final class MinScoreToShow extends AbstractValidator
+final class MinScoreToShow extends BaseValidator
 {
     /**
      * Class constructor.
