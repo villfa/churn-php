@@ -10,6 +10,7 @@ use Churn\Event\Event\BeforeAnalysisEvent;
 use Churn\Event\Subscriber\AfterAnalysis;
 use Churn\Event\Subscriber\AfterFileAnalysis;
 use Churn\Event\Subscriber\BeforeAnalysis;
+use Closure;
 
 /**
  * @internal
@@ -22,7 +23,7 @@ class Broker
     private $subscribers = [];
 
     /**
-     * @var array<array{class-string, string, class-string}>
+     * @var array<array{class-string, callable(mixed): callable, class-string<Event>}>
      */
     private $channels;
 
@@ -31,10 +32,25 @@ class Broker
      */
     public function __construct()
     {
+        $onAfterAnalysis = static function (AfterAnalysis $subscriber): Closure {
+            return static function (AfterAnalysisEvent $event) use ($subscriber): void {
+                $subscriber->onAfterAnalysis($event);
+            }
+        };
+        $onAfterFileAnalysis = static function (AfterFileAnalysis $subscriber): Closure {
+            return static function (AfterFileAnalysisEvent $event) use ($subscriber): void {
+                $subscriber->onAfterFileAnalysis($event);
+            }
+        };
+        $onBeforeAnalysis = static function (BeforeAnalysis $subscriber): Closure {
+            return static function (BeforeAnalysisEvent $event) use ($subscriber): void {
+                $subscriber->onBeforeAnalysis($event);
+            }
+        };
         $this->channels = [
-            [AfterAnalysis::class, 'onAfterAnalysis', AfterAnalysisEvent::class],
-            [AfterFileAnalysis::class, 'onAfterFileAnalysis', AfterFileAnalysisEvent::class],
-            [BeforeAnalysis::class, 'onBeforeAnalysis', BeforeAnalysisEvent::class],
+            [AfterAnalysis::class, $onAfterAnalysis, AfterAnalysisEvent::class],
+            [AfterFileAnalysis::class, $onAfterFileAnalysis, AfterFileAnalysisEvent::class],
+            [BeforeAnalysis::class, $onBeforeAnalysis, BeforeAnalysisEvent::class],
         ];
     }
 
@@ -43,14 +59,12 @@ class Broker
      */
     public function subscribe($subscriber): void
     {
-        foreach ($this->channels as [$class, $method, $eventClass]) {
+        foreach ($this->channels as [$class, $builder, $eventClass]) {
             if (!$subscriber instanceof $class) {
                 continue;
             }
 
-            $this->subscribers[$eventClass][] = static function (Event $event) use ($subscriber, $method): void {
-                $subscriber->$method($event);
-            };
+            $this->subscribers[$eventClass][] = $builder($subscriber);
         }
     }
 
