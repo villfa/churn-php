@@ -66,6 +66,7 @@ class ConcreteProcessFactory implements ProcessFactory
 
     /**
      * Returns a cyclomatic complexity builder.
+     *
      * @return Closure(File):CyclomaticComplexityInterface
      */
     private function getCyclomaticComplexityProcessBuilder(): Closure

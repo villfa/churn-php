@@ -6,7 +6,6 @@ namespace Churn\Process\Handler;
 
 use Churn\Event\Broker;
 use Churn\Event\Event\AfterFileAnalysisEvent;
-use Churn\File\File;
 use Churn\Process\ProcessFactory;
 use Churn\Process\ProcessInterface;
 use Churn\Result\Result;
@@ -33,8 +32,9 @@ class SequentialProcessHandler extends BaseProcessHandler
     /**
      * Run the processes sequentially to gather information.
      *
-     * @param Generator<File> $filesFinder Collection of files.
+     * @param Generator $filesFinder Collection of files.
      * @param ProcessFactory $processFactory Process Factory.
+     * @psalm-param Generator<\Churn\File\File> $filesFinder
      */
     public function process(Generator $filesFinder, ProcessFactory $processFactory): void
     {

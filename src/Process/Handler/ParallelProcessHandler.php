@@ -50,8 +50,9 @@ class ParallelProcessHandler extends BaseProcessHandler
     /**
      * Run the processes to gather information.
      *
-     * @param Generator<File> $filesFinder Collection of files.
+     * @param Generator $filesFinder Collection of files.
      * @param ProcessFactory $processFactory Process Factory.
+     * @psalm-param Generator<\Churn\File\File> $filesFinder
      */
     public function process(Generator $filesFinder, ProcessFactory $processFactory): void
     {
@@ -92,7 +93,6 @@ class ParallelProcessHandler extends BaseProcessHandler
      */
     private function addToPool(array &$pool, File $file, ProcessFactory $processFactory): void
     {
-        /** @var int|string $i */
         foreach ($processFactory->createProcesses($file) as $i => $process) {
             $process->start();
             $pool["$i:" . $file->getDisplayPath()] = $process;

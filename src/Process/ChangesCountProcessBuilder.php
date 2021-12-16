@@ -99,6 +99,7 @@ class ChangesCountProcessBuilder
 
     /**
      * Returns a builder for NoVcsChangesCountProcess.
+     *
      * @return Closure(File):ChangesCountInterface
      */
     private function getNoVcsChangesCountProcessBuilder(): Closure
