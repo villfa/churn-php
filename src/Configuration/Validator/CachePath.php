@@ -34,8 +34,9 @@ final class CachePath implements Validator
         }
 
         $value = $configuration[self::KEY];
-        if ($value === null) {
+        if (null === $value) {
             $config->setCachePath(null);
+
             return;
         }
 

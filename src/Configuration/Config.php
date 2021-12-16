@@ -10,12 +10,12 @@ namespace Churn\Configuration;
 class Config
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
     private $directoriesToScan = [];
 
     /**
-     * @var int
+     * @var integer
      */
     private $filesToShow = 10;
 
@@ -30,7 +30,7 @@ class Config
     private $maxScoreThreshold = null;
 
     /**
-     * @var int
+     * @var integer
      */
     private $parallelJobs = 10;
 
@@ -40,12 +40,12 @@ class Config
     private $commitsSince = '10 years ago';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
     private $filesToIgnore = [];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
     private $fileExtensions = ['php'];
 
@@ -60,7 +60,7 @@ class Config
     private $cachePath = null;
 
     /**
-     * @var string[]
+     * @var array<string>
      */
     private $hooks = [];
 
@@ -69,7 +69,9 @@ class Config
      */
     private $path;
 
-    /** @var array<int|string> */
+    /**
+     * @var array<int|string>
+     */
     private $unrecognizedKeys = [];
 
     /**
@@ -133,7 +135,7 @@ class Config
     }
 
     /**
-     * @param int $filesToShow The number of files to display in the results table.
+     * @param integer $filesToShow The number of files to display in the results table.
      */
     public function setFilesToShow(int $filesToShow): void
     {
@@ -262,9 +264,6 @@ class Config
         return $this->cachePath;
     }
 
-    /**
-     * @param string|null The cache file path.
-     */
     public function setCachePath(?string $cachePath): void
     {
         $this->cachePath = $cachePath;

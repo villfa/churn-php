@@ -34,8 +34,9 @@ final class MaxScoreThreshold implements Validator
         }
 
         $value = $configuration[self::KEY];
-        if ($value === null) {
+        if (null === $value) {
             $config->setMaxScoreThreshold(null);
+
             return;
         }
 

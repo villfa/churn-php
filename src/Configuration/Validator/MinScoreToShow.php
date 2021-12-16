@@ -34,8 +34,9 @@ final class MinScoreToShow implements Validator
         }
 
         $value = $configuration[self::KEY];
-        if ($value === null) {
+        if (null === $value) {
             $config->setMinScoreToShow(null);
+
             return;
         }
 
