@@ -18,7 +18,7 @@ use Churn\Configuration\Validator\MinScoreToShow;
 use Churn\Configuration\Validator\ParallelJobs;
 use Churn\Configuration\Validator\Vcs;
 use Churn\Tests\BaseTestCase;
-use Webmozart\Assert\InvalidArgumentException;
+use InvalidArgumentException;
 
 class ValidatorTest extends BaseTestCase
 {
