@@ -264,6 +264,9 @@ class Config
         return $this->cachePath;
     }
 
+    /**
+     * @param string|null $cachePath The cache file path.
+     */
     public function setCachePath(?string $cachePath): void
     {
         $this->cachePath = $cachePath;
