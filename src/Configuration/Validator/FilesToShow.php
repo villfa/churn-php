@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Churn\Configuration\Validator;
 
 use Churn\Config;
-use Churn\Config\Validator;
+use Churn\Configuration\Validator;
 use Webmozart\Assert\Assert;
 
 /**
