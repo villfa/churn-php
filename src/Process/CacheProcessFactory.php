@@ -30,7 +30,7 @@ class CacheProcessFactory implements AfterAnalysis, AfterFileAnalysis, ProcessFa
     private $processFactory;
 
     /**
-     * @var array<string, array<mixed>> The cached data.
+     * @var array<string, array<scalar>> The cached data.
      */
     private $cache;
 
