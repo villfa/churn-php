@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Churn\Tests\Unit\Configuration;
 
-use Churn\Configuration\Config;
+use Churn\Configuration\EditableConfig;
 use Churn\Configuration\Validator;
 use Churn\Configuration\Validator\CachePath;
 use Churn\Configuration\Validator\CommitsSince;
@@ -28,7 +28,7 @@ class ValidatorTest extends BaseTestCase
      */
     public function it_returns_the_default_value(Validator $validator, string $method, $defaultValue): void
     {
-        $config = new Config();
+        $config = new EditableConfig();
         $validator->validate($config, []);
 
         $this->assertSame($defaultValue, $config->$method());
@@ -55,7 +55,7 @@ class ValidatorTest extends BaseTestCase
      */
     public function it_returns_the_given_value(Validator $validator, string $method, $value): void
     {
-        $config = new Config();
+        $config = new EditableConfig();
         $validator->validate($config, [$validator->getKey() => $value]);
 
         $this->assertSame($value, $config->$method());
@@ -82,7 +82,7 @@ class ValidatorTest extends BaseTestCase
      */
     public function it_accepts_null(Validator $validator, string $method): void
     {
-        $config = new Config();
+        $config = new EditableConfig();
         $validator->validate($config, [$validator->getKey() => null]);
 
         $this->assertNull($config->$method());
@@ -101,7 +101,7 @@ class ValidatorTest extends BaseTestCase
      */
     public function it_throws_with_invalid_value(Validator $validator, $invalidValue): void
     {
-        $config = new Config();
+        $config = new EditableConfig();
         $this->expectException(InvalidArgumentException::class);
         $validator->validate($config, [$validator->getKey() => $invalidValue]);
     }

@@ -11,30 +11,22 @@ use Webmozart\Assert\Assert;
 /**
  * @internal
  */
-final class Vcs implements Validator
+final class Vcs extends AbstractValidator
 {
-    private const KEY = 'vcs';
-
     /**
-     * Returns the configuration key.
+     * Class constructor.
      */
-    public function getKey(): string
+    public function __construct()
     {
-        return self::KEY;
+        parent::__construct('vcs');
     }
 
     /**
-     * @param Config $config The configuration object.
-     * @param array<mixed> $configuration The array containing the configuration values.
+     * @param EditableConfig $config The configuration object.
+     * @param mixed $value The value to validate.
      */
-    public function validate(Config $config, array $configuration): void
+    protected function validateValue(EditableConfig $config, $value): void
     {
-        if (!\array_key_exists(self::KEY, $configuration)) {
-            return;
-        }
-
-        $value = $configuration[self::KEY];
-
         Assert::string($value, 'VCS should be a string');
 
         $config->setVCS($value);
