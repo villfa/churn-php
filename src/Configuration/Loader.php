@@ -37,8 +37,7 @@ class Loader
 
         if (false !== $confPath && \is_readable($confPath)) {
             $config = new Config($confPath);
-            $unrecognizedKeys = self::validate($config, self::loadYaml($confPath));
-            $config->setUnrecognizedKeys($unrecognizedKeys);
+            $config->setUnrecognizedKeys(self::validate($config, self::loadYaml($confPath)));
 
             return $config;
         }
