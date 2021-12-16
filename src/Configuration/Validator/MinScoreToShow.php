@@ -41,6 +41,6 @@ final class MinScoreToShow implements Validator
 
         Assert::numeric($value, 'Minimum score to show should be a number');
 
-        $config->setMinScoreToShow($value);
+        $config->setMinScoreToShow((float) $value);
     }
 }

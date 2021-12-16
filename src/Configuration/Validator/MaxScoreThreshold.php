@@ -41,6 +41,6 @@ final class MaxScoreThreshold implements Validator
 
         Assert::numeric($value, 'Maximum score threshold should be a number');
 
-        $config->setMaxScoreThreshold($value);
+        $config->setMaxScoreThreshold((float) $value);
     }
 }
