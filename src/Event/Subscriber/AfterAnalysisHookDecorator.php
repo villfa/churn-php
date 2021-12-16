@@ -9,7 +9,7 @@ use Churn\Event\Event\AfterAnalysisEvent;
 /**
  * @internal
  */
-class AfterAnalysisHookDecorator implements AfterAnalysis
+class AfterAnalysisHookDecorator implements AfterAnalysis, HookDecorator
 {
     /**
      * @var string
@@ -17,7 +17,7 @@ class AfterAnalysisHookDecorator implements AfterAnalysis
     private $hook;
 
     /**
-     * @param string $hook The user-defined hook class name.
+     * @param class-string $hook The user-defined hook class name.
      */
     public function __construct(string $hook)
     {

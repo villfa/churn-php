@@ -9,7 +9,7 @@ use Churn\Event\Event\AfterFileAnalysisEvent;
 /**
  * @internal
  */
-class AfterFileAnalysisHookDecorator implements AfterFileAnalysis
+class AfterFileAnalysisHookDecorator implements AfterFileAnalysis, HookDecorator
 {
     /**
      * @var string
@@ -17,7 +17,7 @@ class AfterFileAnalysisHookDecorator implements AfterFileAnalysis
     private $hook;
 
     /**
-     * @param string $hook The user-defined hook class name.
+     * @param class-string $hook The user-defined hook class name.
      */
     public function __construct(string $hook)
     {

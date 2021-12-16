@@ -10,6 +10,7 @@ use Churn\Event\Hook\BeforeAnalysisHook;
 use Churn\Event\Subscriber\AfterAnalysisHookDecorator;
 use Churn\Event\Subscriber\AfterFileAnalysisHookDecorator;
 use Churn\Event\Subscriber\BeforeAnalysisHookDecorator;
+use Churn\Event\Subscriber\HookDecorator;
 use Churn\File\FileHelper;
 use InvalidArgumentException;
 
@@ -19,7 +20,7 @@ use InvalidArgumentException;
 final class HookLoader
 {
     /**
-     * @var array<class-string, class-string>
+     * @var array<class-string<HookDecorator>, class-string>
      */
     private $decorators;
 
@@ -104,7 +105,7 @@ final class HookLoader
 
     /**
      * @param class-string $hookName The class name of the hook.
-     * @return array<mixed>
+     * @return array<HookDecorator>
      */
     private function hookToSubscribers(string $hookName): array
     {
