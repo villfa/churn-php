@@ -36,7 +36,7 @@ class Loader
 
         if (false !== $confPath && \is_readable($confPath)) {
             $config = new Config($confPath);
-            $unrecognizedKeys = $this->validate($config, self::loadYaml($confPath));
+            $unrecognizedKeys = self::validate($config, self::loadYaml($confPath));
             $config->setUnrecognizedKeys($unrecognizedKeys);
         }
 
@@ -85,7 +85,7 @@ class Loader
      * @param array<mixed> $configuration The array containing the configuration values.
      * @return array<int|string>
      */
-    private function validate(Config $config, array $configuration): array
+    private static function validate(Config $config, array $configuration): array
     {
         $validators = [
             new CachePath(),
