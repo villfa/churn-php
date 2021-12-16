@@ -34,7 +34,7 @@ class ValidatorTest extends BaseTestCase
         $this->assertSame($defaultValue, $config->$method());
     }
 
-    private function provide_validators_with_default_value(): iterable
+    public function provide_validators_with_default_value(): iterable
     {
         yield [new CachePath(), 'getCachePath', null];
         yield [new CommitsSince(), 'getCommitsSince', '10 years ago'];
@@ -61,7 +61,7 @@ class ValidatorTest extends BaseTestCase
         $this->assertSame($value, $config->$method());
     }
 
-    private function provide_validators_with_given_value(): iterable
+    public function provide_validators_with_given_value(): iterable
     {
         yield [new CachePath(), 'getCachePath', '/tmp/.churn.cache'];
         yield [new CommitsSince(), 'getCommitsSince', '4 years ago'];
@@ -88,7 +88,7 @@ class ValidatorTest extends BaseTestCase
         $this->assertNull($config->$method());
     }
 
-    private function provide_validators_accepting_null(): iterable
+    public function provide_validators_accepting_null(): iterable
     {
         yield [new CachePath(), 'getCachePath'];
         yield [new MaxScoreThreshold(), 'getMaxScoreThreshold'];
@@ -106,7 +106,7 @@ class ValidatorTest extends BaseTestCase
         $validator->validate($config, [$validator->getKey() => $invalidValue]);
     }
 
-    private function provide_validators_with_invalid_value(): iterable
+    public function provide_validators_with_invalid_value(): iterable
     {
         yield [new CachePath(), 123];
         yield [new CommitsSince(), 123];
