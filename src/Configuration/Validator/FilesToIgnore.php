@@ -24,7 +24,7 @@ final class FilesToIgnore implements Validator
     }
 
     /**
-     * @param Config The configuration object.
+     * @param Config $config The configuration object.
      * @param array<mixed> $configuration The array containing the configuration values.
      */
     public function validate(Config $config, array $configuration): void

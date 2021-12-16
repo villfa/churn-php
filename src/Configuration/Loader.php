@@ -39,7 +39,6 @@ class Loader
             $config = new Config($confPath);
             $unrecognizedKeys = self::validate($config, self::loadYaml($confPath));
             $config->setUnrecognizedKeys($unrecognizedKeys);
-
             return $config;
         }
 
@@ -84,7 +83,7 @@ class Loader
     }
 
     /**
-     * @param Config The configuration object.
+     * @param Config $config The configuration object.
      * @param array<mixed> $configuration The array containing the configuration values.
      * @return array<int|string>
      */
