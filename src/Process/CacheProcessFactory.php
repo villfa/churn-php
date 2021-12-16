@@ -139,7 +139,7 @@ class CacheProcessFactory implements AfterAnalysis, AfterFileAnalysis, ProcessFa
 
     /**
      * @param string $cachePath Cache file path.
-     * @return array<string, array<mixed>>
+     * @return array<string, array<scalar>>
      */
     private function loadCache(string $cachePath): array
     {
