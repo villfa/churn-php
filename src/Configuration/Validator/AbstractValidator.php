@@ -45,7 +45,7 @@ abstract class AbstractValidator implements Validator
 
         $value = $configuration[$this->key];
 
-        $this->validateValue($value);
+        $this->validateValue($config, ($value);
     }
 
     /**
