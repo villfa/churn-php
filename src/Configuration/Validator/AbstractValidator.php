@@ -18,6 +18,12 @@ abstract class AbstractValidator implements Validator
     protected $key;
 
     /**
+     * @param EditableConfig $config The configuration object.
+     * @param mixed $value The value to validate.
+     */
+    abstract protected function validateValue(EditableConfig $config, $value): void;
+
+    /**
      * @param string $key The key of the configuration to validate.
      */
     public function __construct(string $key)
@@ -47,10 +53,4 @@ abstract class AbstractValidator implements Validator
 
         $this->validateValue($config, $value);
     }
-
-    /**
-     * @param EditableConfig $config The configuration object.
-     * @param mixed $value The value to validate.
-     */
-    abstract protected function validateValue(EditableConfig $config, $value): void;
 }
