@@ -4,6 +4,17 @@ declare(strict_types=1);
 
 namespace Churn\Configuration;
 
+use Churn\Configuration\Validator\CachePath;
+use Churn\Configuration\Validator\CommitsSince;
+use Churn\Configuration\Validator\DirectoriesToScan;
+use Churn\Configuration\Validator\FileExtensions;
+use Churn\Configuration\Validator\FilesToIgnore;
+use Churn\Configuration\Validator\FilesToShow;
+use Churn\Configuration\Validator\Hooks;
+use Churn\Configuration\Validator\MaxScoreThreshold;
+use Churn\Configuration\Validator\MinScoreToShow;
+use Churn\Configuration\Validator\ParallelJobs;
+use Churn\Configuration\Validator\Vcs;
 use InvalidArgumentException;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
@@ -24,13 +35,13 @@ class Loader
         $confPath = self::normalizePath($confPath);
 
         if (false !== $confPath && \is_readable($confPath)) {
-            $yaml = self::loadYaml($confPath);
-
-            return Config::create($yaml, $confPath);
+            $config = new Config($confPath);
+            $unrecognizedKeys = $this->validate($config, self::loadYaml($confPath));
+            $config->setUnrecognizedKeys($unrecognizedKeys);
         }
 
         if ($isDefaultValue) {
-            return Config::createFromDefaultValues();
+            return new Config();
         }
 
         throw new InvalidArgumentException('The configuration file can not be read at ' . $originalConfPath);
@@ -56,18 +67,45 @@ class Loader
      */
     private static function loadYaml(string $confPath): array
     {
-        $content = (string) \file_get_contents($confPath);
-
         try {
-            $yaml = Yaml::parse($content) ?? [];
+            $content = Yaml::parse((string) \file_get_contents($confPath)) ?? [];
         } catch (ParseException $e) {
-            $yaml = null;
+            $content = null;
         }
 
-        if (!\is_array($yaml)) {
+        if (!\is_array($content)) {
             throw new InvalidArgumentException('The content of the configuration file is invalid');
         }
 
-        return $yaml;
+        return $content;
+    }
+
+    /**
+     * @param Config The configuration object.
+     * @param array<mixed> $configuration The array containing the configuration values.
+     * @return array<int|string>
+     */
+    private function validate(Config $config, array $configuration): array
+    {
+        $validators = [
+            new CachePath(),
+            new CommitsSince(),
+            new DirectoriesToScan(),
+            new FileExtensions(),
+            new FilesToIgnore(),
+            new FilesToShow(),
+            new Hooks(),
+            new MaxScoreThreshold(),
+            new MinScoreToShow(),
+            new ParallelJobs(),
+            new Vcs(),
+        ];
+
+        foreach ($validators as $validator) {
+            $validator->validate($config, $configuration);
+            unset($configuration[$validator->getKey()]);
+        }
+
+        return \array_keys($configuration);
     }
 }
