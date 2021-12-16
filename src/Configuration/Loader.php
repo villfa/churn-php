@@ -32,8 +32,7 @@ class Loader
      */
     public static function fromPath(string $confPath, bool $isDefaultValue): Config
     {
-        $originalConfPath = $confPath;
-        $confPath = self::normalizePath($confPath);
+        $confPath = self::normalizePath($$originalConfPath = $confPath);
 
         if (false !== $confPath && \is_readable($confPath)) {
             $config = new Config($confPath);
@@ -89,7 +88,7 @@ class Loader
      */
     private static function validate(Config $config, array $configuration): array
     {
-        $validators = [
+        foreach ([
             new CachePath(),
             new CommitsSince(),
             new DirectoriesToScan(),
@@ -101,9 +100,7 @@ class Loader
             new MinScoreToShow(),
             new ParallelJobs(),
             new Vcs(),
-        ];
-
-        foreach ($validators as $validator) {
+        ] as $validator) {
             $validator->validate($config, $configuration);
             unset($configuration[$validator->getKey()]);
         }
