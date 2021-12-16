@@ -71,7 +71,7 @@ class ValidatorTest extends BaseTestCase
         yield [new FilesToShow(), 'getFilesToShow', 13];
         yield [new Hooks(), 'getHooks', ['Hook1', 'Hook2']];
         yield [new MaxScoreThreshold(), 'getMaxScoreThreshold', 9.5];
-        yield [new MinScoreToShow(), 'getMinScoreToShow', 5];
+        yield [new MinScoreToShow(), 'getMinScoreToShow', 5.0];
         yield [new ParallelJobs(), 'getParallelJobs', 7];
         yield [new Vcs(), 'getVCS', 'none'];
     }

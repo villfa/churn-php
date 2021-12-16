@@ -21,7 +21,7 @@ class ConfigTest extends BaseTestCase
     {
         $config = new Config();
 
-        $this->assertSame(\getcwd, $config->getDirPath());
+        $this->assertSame(\getcwd(), $config->getDirPath());
     }
 
     /** @test */
