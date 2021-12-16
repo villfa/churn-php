@@ -93,9 +93,11 @@ class ParallelProcessHandler extends BaseProcessHandler
      */
     private function addToPool(array &$pool, File $file, ProcessFactory $processFactory): void
     {
-        foreach ($processFactory->createProcesses($file) as $i => $process) {
+        $i = 0;
+        foreach ($processFactory->createProcesses($file) as $process) {
             $process->start();
             $pool["$i:" . $file->getDisplayPath()] = $process;
+            $i++;
         }
     }
 
