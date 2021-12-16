@@ -21,7 +21,7 @@ class HighestScores
      */
     public function __construct(int $maxSize)
     {
-        /** @var SplFixedArray<Result|null> */
+        /** @var SplFixedArray<Result|null> $this->scores */
         $this->scores = new SplFixedArray($maxSize);
     }
 
