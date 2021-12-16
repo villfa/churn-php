@@ -111,6 +111,14 @@ class Config
     }
 
     /**
+     * @param array<string> $directoriesToScan Paths of directories to scan.
+     */
+    public function setDirectoriesToScan(array $directoriesToScan): void
+    {
+        $this->directoriesToScan = $directoriesToScan;
+    }
+
+    /**
      * Get the number of files to display in the results table.
      */
     public function getFilesToShow(): int
@@ -140,6 +148,14 @@ class Config
     public function getParallelJobs(): int
     {
         return $this->parallelJobs;
+    }
+
+    /**
+     * @param integer $parallelJobs Number of parallel jobs.
+     */
+    public function setParallelJobs(int $parallelJobs): void
+    {
+        $this->parallelJobs = $parallelJobs;
     }
 
     /**

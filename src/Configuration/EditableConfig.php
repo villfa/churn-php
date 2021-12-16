@@ -18,14 +18,6 @@ final class EditableConfig extends Config
     }
 
     /**
-     * @param array<string> $directoriesToScan Paths of directories to scan.
-     */
-    public function setDirectoriesToScan(array $directoriesToScan): void
-    {
-        $this->directoriesToScan = $directoriesToScan;
-    }
-
-    /**
      * @param integer $filesToShow The number of files to display in the results table.
      */
     public function setFilesToShow(int $filesToShow): void
@@ -47,14 +39,6 @@ final class EditableConfig extends Config
     public function setMaxScoreThreshold(?float $maxScoreThreshold): void
     {
         $this->maxScoreThreshold = $maxScoreThreshold;
-    }
-
-    /**
-     * @param integer $parallelJobs Number of parallel jobs.
-     */
-    public function setParallelJobs(int $parallelJobs): void
-    {
-        $this->parallelJobs = $parallelJobs;
     }
 
     /**
