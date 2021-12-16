@@ -21,6 +21,7 @@ use Symfony\Component\Yaml\Yaml;
 
 /**
  * @internal
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class Loader
 {
