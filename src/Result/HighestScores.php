@@ -12,7 +12,7 @@ use SplFixedArray;
 class HighestScores
 {
     /**
-     * @var SplFixedArray
+     * @var SplFixedArray<Result|null>
      */
     private $scores;
 
@@ -21,6 +21,7 @@ class HighestScores
      */
     public function __construct(int $maxSize)
     {
+        /** @var SplFixedArray<Result|null> */
         $this->scores = new SplFixedArray($maxSize);
     }
 
@@ -41,10 +42,8 @@ class HighestScores
      */
     public function add(Result $result): void
     {
-        if (
-            null !== $this->scores[$this->scores->getSize() - 1]
-            && $result->getPriority() <= $this->scores[$this->scores->getSize() - 1]->getPriority()
-        ) {
+        $worstScore = $this->scores[$this->scores->getSize() - 1];
+        if (null !== $worstScore && $result->getPriority() <= $worstScore->getPriority()) {
             return;
         }
 
