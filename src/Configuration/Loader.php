@@ -88,19 +88,21 @@ class Loader
      */
     private static function validate(Config $config, array $configuration): array
     {
-        foreach ([
-            new CachePath(),
-            new CommitsSince(),
-            new DirectoriesToScan(),
-            new FileExtensions(),
-            new FilesToIgnore(),
-            new FilesToShow(),
-            new Hooks(),
-            new MaxScoreThreshold(),
-            new MinScoreToShow(),
-            new ParallelJobs(),
-            new Vcs(),
-        ] as $validator) {
+        foreach (
+            [
+                new CachePath(),
+                new CommitsSince(),
+                new DirectoriesToScan(),
+                new FileExtensions(),
+                new FilesToIgnore(),
+                new FilesToShow(),
+                new Hooks(),
+                new MaxScoreThreshold(),
+                new MinScoreToShow(),
+                new ParallelJobs(),
+                new Vcs(),
+            ] as $validator
+        ) {
             $validator->validate($config, $configuration);
             unset($configuration[$validator->getKey()]);
         }
