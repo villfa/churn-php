@@ -35,17 +35,17 @@ class Broker
         $onAfterAnalysis = static function (AfterAnalysis $subscriber): Closure {
             return static function (AfterAnalysisEvent $event) use ($subscriber): void {
                 $subscriber->onAfterAnalysis($event);
-            }
+            };
         };
         $onAfterFileAnalysis = static function (AfterFileAnalysis $subscriber): Closure {
             return static function (AfterFileAnalysisEvent $event) use ($subscriber): void {
                 $subscriber->onAfterFileAnalysis($event);
-            }
+            };
         };
         $onBeforeAnalysis = static function (BeforeAnalysis $subscriber): Closure {
             return static function (BeforeAnalysisEvent $event) use ($subscriber): void {
                 $subscriber->onBeforeAnalysis($event);
-            }
+            };
         };
         $this->channels = [
             [AfterAnalysis::class, $onAfterAnalysis, AfterAnalysisEvent::class],
