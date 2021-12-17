@@ -35,7 +35,7 @@ final class AfterFileAnalysisChannel implements Channel
      * @param AfterFileAnalysis $subscriber A subscriber instance.
      * @return Closure(AfterFileAnalysisEvent): void
      */
-    public function buildEventHandler(AfterFileAnalysis $subscriber): Closure
+    public function buildEventHandler($subscriber): Closure
     {
         return static function (AfterFileAnalysisEvent $event) use ($subscriber): void {
             $subscriber->onAfterFileAnalysis($event);

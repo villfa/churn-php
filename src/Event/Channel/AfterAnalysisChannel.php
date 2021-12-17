@@ -35,7 +35,7 @@ final class AfterAnalysisChannel implements Channel
      * @param AfterAnalysis $subscriber A subscriber instance.
      * @return Closure(AfterAnalysisEvent): void
      */
-    public function buildEventHandler(AfterAnalysis $subscriber): Closure
+    public function buildEventHandler($subscriber): Closure
     {
         return static function (AfterAnalysisEvent $event) use ($subscriber): void {
             $subscriber->onAfterAnalysis($event);
