@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Churn\Event\Channel;
 
 use Churn\Event\Channel;
-use Churn\Event\Event\BeforeAnalysisEvent;
+use Churn\Event\Event\BeforeAnalysis as BeforeAnalysisEvent;
 use Churn\Event\Subscriber\BeforeAnalysis;
 use Closure;
 

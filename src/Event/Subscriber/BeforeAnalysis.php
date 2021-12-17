@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Churn\Event\Subscriber;
 
-use Churn\Event\Event\BeforeAnalysisEvent;
+use Churn\Event\Event\BeforeAnalysis;
 
 /**
  * @internal
@@ -12,7 +12,7 @@ use Churn\Event\Event\BeforeAnalysisEvent;
 interface BeforeAnalysis
 {
     /**
-     * @param BeforeAnalysisEvent $event The event triggered when the analysis starts.
+     * @param BeforeAnalysis $event The event triggered when the analysis starts.
      */
-    public function onBeforeAnalysis(BeforeAnalysisEvent $event): void;
+    public function onBeforeAnalysis(BeforeAnalysis $event): void;
 }

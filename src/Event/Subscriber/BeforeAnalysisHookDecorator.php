@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Churn\Event\Subscriber;
 
-use Churn\Event\Event\BeforeAnalysisEvent;
+use Churn\Event\Event\BeforeAnalysis;
 
 /**
  * @internal
@@ -27,7 +27,7 @@ class BeforeAnalysisHookDecorator implements BeforeAnalysis, HookDecorator
     /**
      * @param BeforeAnalysisEvent $event The event triggered when the analysis starts.
      */
-    public function onBeforeAnalysis(BeforeAnalysisEvent $event): void
+    public function onBeforeAnalysis(BeforeAnalysis $event): void
     {
         \call_user_func([$this->hook, 'beforeAnalysis'], $event);
     }

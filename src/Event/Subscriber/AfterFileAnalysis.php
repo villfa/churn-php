@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Churn\Event\Subscriber;
 
-use Churn\Event\Event\AfterFileAnalysisEvent;
+use Churn\Event\Event\AfterFileAnalysis;
 
 /**
  * @internal
@@ -12,7 +12,7 @@ use Churn\Event\Event\AfterFileAnalysisEvent;
 interface AfterFileAnalysis
 {
     /**
-     * @param AfterFileAnalysisEvent $event The event triggered when the analysis of a file is done.
+     * @param AfterFileAnalysis $event The event triggered when the analysis of a file is done.
      */
-    public function onAfterFileAnalysis(AfterFileAnalysisEvent $event): void;
+    public function onAfterFileAnalysis(AfterFileAnalysis $event): void;
 }

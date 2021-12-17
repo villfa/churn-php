@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Churn\Event\Channel;
 
 use Churn\Event\Channel;
-use Churn\Event\Event\AfterFileAnalysisEvent;
+use Churn\Event\Event\AfterFileAnalysis as AfterFileAnalysisEvent;
 use Churn\Event\Subscriber\AfterFileAnalysis;
 use Closure;
 
