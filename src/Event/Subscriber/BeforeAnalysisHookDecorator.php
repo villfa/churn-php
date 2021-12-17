@@ -12,7 +12,7 @@ use Churn\Event\Event\BeforeAnalysis as BeforeAnalysisEvent;
 class BeforeAnalysisHookDecorator implements BeforeAnalysis, HookDecorator
 {
     /**
-     * @var string
+     * @var class-string
      */
     private $hook;
 

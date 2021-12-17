@@ -12,7 +12,7 @@ use Churn\Event\Event\AfterFileAnalysis as AfterFileAnalysisEvent;
 class AfterFileAnalysisHookDecorator implements AfterFileAnalysis, HookDecorator
 {
     /**
-     * @var string
+     * @var class-string
      */
     private $hook;
 
