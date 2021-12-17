@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Churn\Event;
 
-use Churn\Event\Event\AfterAnalysisEvent;
-use Churn\Event\Event\AfterFileAnalysisEvent;
-use Churn\Event\Event\BeforeAnalysisEvent;
-use Churn\Event\Subscriber\AfterAnalysis;
-use Churn\Event\Subscriber\AfterFileAnalysis;
-use Churn\Event\Subscriber\BeforeAnalysis;
+use Churn\Event\Channel;
+use Churn\Event\Channel\AfterAnalysisChannel;
+use Churn\Event\Channel\AfterFileAnalysisChannel;
+use Churn\Event\Channel\BeforeAnalysisChannel;
 use Closure;
 
 /**
@@ -23,7 +21,7 @@ class Broker
     private $subscribers = [];
 
     /**
-     * @var array<array{class-string, callable(mixed): callable, class-string<Event>}>
+     * @var array<Channel>
      */
     private $channels;
 
@@ -32,39 +30,24 @@ class Broker
      */
     public function __construct()
     {
-        $onAfterAnalysis = static function (AfterAnalysis $subscriber): Closure {
-            return static function (AfterAnalysisEvent $event) use ($subscriber): void {
-                $subscriber->onAfterAnalysis($event);
-            };
-        };
-        $onAfterFileAnalysis = static function (AfterFileAnalysis $subscriber): Closure {
-            return static function (AfterFileAnalysisEvent $event) use ($subscriber): void {
-                $subscriber->onAfterFileAnalysis($event);
-            };
-        };
-        $onBeforeAnalysis = static function (BeforeAnalysis $subscriber): Closure {
-            return static function (BeforeAnalysisEvent $event) use ($subscriber): void {
-                $subscriber->onBeforeAnalysis($event);
-            };
-        };
         $this->channels = [
-            [AfterAnalysis::class, $onAfterAnalysis, AfterAnalysisEvent::class],
-            [AfterFileAnalysis::class, $onAfterFileAnalysis, AfterFileAnalysisEvent::class],
-            [BeforeAnalysis::class, $onBeforeAnalysis, BeforeAnalysisEvent::class],
+            new AfterAnalysisChannel(),
+            new AfterFileAnalysisChannel(),
+            new BeforeAnalysisChannel(),
         ];
     }
 
     /**
-     * @param mixed $subscriber A subscriber object.
+     * @param object $subscriber A subscriber object.
      */
     public function subscribe($subscriber): void
     {
-        foreach ($this->channels as [$class, $builder, $eventClass]) {
-            if (!$subscriber instanceof $class) {
+        foreach ($this->channels as $channel) {
+            if (!$channel->accetps($subscriber)) {
                 continue;
             }
 
-            $this->subscribers[$eventClass][] = $builder($subscriber);
+            $this->subscribers[$channel->getEventClassname()][] = $channel->buildEventHandler($subscriber);
         }
     }
 
