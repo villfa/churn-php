@@ -12,12 +12,12 @@ use Churn\Event\Event\AfterAnalysis as AfterAnalysisEvent;
 class AfterAnalysisHookDecorator implements AfterAnalysis, HookDecorator
 {
     /**
-     * @var class-string<AfterAnalysis>
+     * @var class-string<\Churn\Event\Hook\AfterAnalysisHook>
      */
     private $hook;
 
     /**
-     * @param class-string<AfterAnalysis> $hook The user-defined hook class name.
+     * @param class-string<\Churn\Event\Hook\AfterAnalysisHook> $hook The user-defined hook class name.
      */
     public function __construct(string $hook)
     {

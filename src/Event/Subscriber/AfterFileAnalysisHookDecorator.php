@@ -12,12 +12,12 @@ use Churn\Event\Event\AfterFileAnalysis as AfterFileAnalysisEvent;
 class AfterFileAnalysisHookDecorator implements AfterFileAnalysis, HookDecorator
 {
     /**
-     * @var class-string<AfterFileAnalysis>
+     * @var class-string<\Churn\Event\Hook\AfterFileAnalysisHook>
      */
     private $hook;
 
     /**
-     * @param class-string<AfterFileAnalysis> $hook The user-defined hook class name.
+     * @param class-string<\Churn\Event\Hook\AfterFileAnalysisHook> $hook The user-defined hook class name.
      */
     public function __construct(string $hook)
     {

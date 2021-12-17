@@ -12,12 +12,12 @@ use Churn\Event\Event\BeforeAnalysis as BeforeAnalysisEvent;
 class BeforeAnalysisHookDecorator implements BeforeAnalysis, HookDecorator
 {
     /**
-     * @var class-string<BeforeAnalysis>
+     * @var class-string<\Churn\Event\Hook\BeforeAnalysisHook>
      */
     private $hook;
 
     /**
-     * @param class-string<BeforeAnalysis> $hook The user-defined hook class name.
+     * @param class-string<\Churn\Event\Hook\BeforeAnalysisHook> $hook The user-defined hook class name.
      */
     public function __construct(string $hook)
     {
