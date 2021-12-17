@@ -32,8 +32,9 @@ final class AfterFileAnalysisChannel implements Channel
     }
 
     /**
-     * @param AfterFileAnalysis $subscriber A subscriber instance.
+     * @param object $subscriber A subscriber instance.
      * @return Closure(AfterFileAnalysisEvent): void
+     * @psalm-param AfterFileAnalysis $subscriber
      */
     public function buildEventHandler($subscriber): Closure
     {

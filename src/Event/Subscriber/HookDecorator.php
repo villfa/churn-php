@@ -11,7 +11,8 @@ namespace Churn\Event\Subscriber;
 interface HookDecorator
 {
     /**
-     * @param class-string<H> $hook The user-defined hook class name.
+     * @param string $hook The user-defined hook class name.
+     * @psalm-param class-string<H>
      */
     public function __construct(string $hook);
 }

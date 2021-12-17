@@ -32,8 +32,9 @@ final class BeforeAnalysisChannel implements Channel
     }
 
     /**
-     * @param BeforeAnalysis $subscriber A subscriber instance.
+     * @param object $subscriber A subscriber instance.
      * @return Closure(BeforeAnalysisEvent): void
+     * @psalm-param BeforeAnalysis $subscriber
      */
     public function buildEventHandler($subscriber): Closure
     {
