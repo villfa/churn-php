@@ -94,8 +94,8 @@ class CacheProcessFactory implements AfterAnalysis, AfterFileAnalysis, ProcessFa
 
     /**
      * @param string $path The absolute path of the file.
-     * @param int $nbChanges The number of times the file has been changed.
-     * @param int $complexity The cyclomatic complexity of the file.
+     * @param integer $nbChanges The number of times the file has been changed.
+     * @param integer $complexity The cyclomatic complexity of the file.
      */
     private function addToCache(string $path, int $nbChanges, int $complexity): void
     {

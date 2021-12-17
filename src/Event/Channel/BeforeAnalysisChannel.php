@@ -35,7 +35,7 @@ final class BeforeAnalysisChannel implements Channel
      * @param BeforeAnalysis $subscriber A subscriber instance.
      * @return Closure(BeforeAnalysisEvent): void
      */
-    public function buildEventHandler($subscriber): Closure
+    public function buildEventHandler(BeforeAnalysis $subscriber): Closure
     {
         return static function (BeforeAnalysisEvent $event) use ($subscriber): void {
             $subscriber->onBeforeAnalysis($event);

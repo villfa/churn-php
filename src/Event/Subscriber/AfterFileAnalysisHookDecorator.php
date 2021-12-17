@@ -30,6 +30,6 @@ class AfterFileAnalysisHookDecorator implements AfterFileAnalysis, HookDecorator
      */
     public function onAfterFileAnalysis(AfterFileAnalysisEvent $event): void
     {
-        ($this->hook)::afterFileAnalysis($event);
+        $this->hook::afterFileAnalysis($event);
     }
 }

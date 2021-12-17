@@ -56,9 +56,11 @@ class ResultAccumulator implements AfterFileAnalysis
      */
     public function onAfterFileAnalysis(AfterFileAnalysisEvent $event): void
     {
-        if ($event instanceof AfterFileAnalysisEventWithResult) {
-            $this->add($event->getResult());
+        if (!($event instanceof AfterFileAnalysisEventWithResult)) {
+            return;
         }
+
+        $this->add($event->getResult());
     }
 
     /**

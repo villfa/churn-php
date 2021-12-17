@@ -30,6 +30,6 @@ class AfterAnalysisHookDecorator implements AfterAnalysis, HookDecorator
      */
     public function onAfterAnalysis(AfterAnalysisEvent $event): void
     {
-        ($this->hook)::afterAnalysis($event);
+        $this->hook::afterAnalysis($event);
     }
 }

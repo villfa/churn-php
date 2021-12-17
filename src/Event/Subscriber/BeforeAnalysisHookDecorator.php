@@ -30,6 +30,6 @@ class BeforeAnalysisHookDecorator implements BeforeAnalysis, HookDecorator
      */
     public function onBeforeAnalysis(BeforeAnalysisEvent $event): void
     {
-        ($this->hook)::beforeAnalysis($event);
+        $this->hook::beforeAnalysis($event);
     }
 }
