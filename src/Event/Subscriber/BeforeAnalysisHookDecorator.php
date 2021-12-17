@@ -12,12 +12,12 @@ use Churn\Event\Event\BeforeAnalysis as BeforeAnalysisEvent;
 class BeforeAnalysisHookDecorator implements BeforeAnalysis, HookDecorator
 {
     /**
-     * @var class-string
+     * @var class-string<BeforeAnalysis>
      */
     private $hook;
 
     /**
-     * @param class-string $hook The user-defined hook class name.
+     * @param class-string<BeforeAnalysis> $hook The user-defined hook class name.
      */
     public function __construct(string $hook)
     {
@@ -29,6 +29,6 @@ class BeforeAnalysisHookDecorator implements BeforeAnalysis, HookDecorator
      */
     public function onBeforeAnalysis(BeforeAnalysisEvent $event): void
     {
-        \call_user_func([$this->hook, 'beforeAnalysis'], $event);
+        ($this->hook)::beforeAnalysis($event);
     }
 }

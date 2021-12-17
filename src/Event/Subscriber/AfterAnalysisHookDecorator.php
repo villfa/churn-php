@@ -12,12 +12,12 @@ use Churn\Event\Event\AfterAnalysis as AfterAnalysisEvent;
 class AfterAnalysisHookDecorator implements AfterAnalysis, HookDecorator
 {
     /**
-     * @var class-string
+     * @var class-string<AfterAnalysis>
      */
     private $hook;
 
     /**
-     * @param class-string $hook The user-defined hook class name.
+     * @param class-string<AfterAnalysis> $hook The user-defined hook class name.
      */
     public function __construct(string $hook)
     {
@@ -29,6 +29,6 @@ class AfterAnalysisHookDecorator implements AfterAnalysis, HookDecorator
      */
     public function onAfterAnalysis(AfterAnalysisEvent $event): void
     {
-        \call_user_func([$this->hook, 'afterAnalysis'], $event);
+        ($this->hook)::afterAnalysis($event);
     }
 }
