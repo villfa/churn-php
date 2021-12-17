@@ -11,7 +11,7 @@ use Closure;
 
 /**
  * @internal
- * @implements Channel<AfterFileAnalysis>
+ * @implements Channel<AfterFileAnalysis, AfterFileAnalysisEvent>
  */
 final class AfterFileAnalysisChannel implements Channel
 {
@@ -32,7 +32,7 @@ final class AfterFileAnalysisChannel implements Channel
     }
 
     /**
-     * @param object $subscriber A subscriber instance.
+     * @param AfterFileAnalysis $subscriber A subscriber instance.
      * @return Closure(AfterFileAnalysisEvent): void
      */
     public function buildEventHandler($subscriber): Closure

@@ -9,6 +9,7 @@ use Closure;
 /**
  * @internal
  * @template S of object
+ * @template E of Event
  */
 interface Channel
 {
@@ -18,13 +19,13 @@ interface Channel
     public function accepts($subscriber): bool;
 
     /**
-     * @return class-string<Event>
+     * @return class-string<E>
      */
     public function getEventClassname(): string;
 
     /**
      * @param object $subscriber A subscriber instance.
-     * @return Closure(Event): void
+     * @return Closure(E): void
      * @psalm-param S $subscriber
      */
     public function buildEventHandler($subscriber): Closure;

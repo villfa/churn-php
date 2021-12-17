@@ -11,7 +11,7 @@ use Closure;
 
 /**
  * @internal
- * @implements Channel<AfterAnalysis>
+ * @implements Channel<AfterAnalysis, AfterAnalysisEvent>
  */
 final class AfterAnalysisChannel implements Channel
 {
@@ -32,7 +32,7 @@ final class AfterAnalysisChannel implements Channel
     }
 
     /**
-     * @param object $subscriber A subscriber instance.
+     * @param AfterAnalysis $subscriber A subscriber instance.
      * @return Closure(AfterAnalysisEvent): void
      */
     public function buildEventHandler($subscriber): Closure
