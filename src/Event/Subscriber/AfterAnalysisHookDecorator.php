@@ -8,6 +8,7 @@ use Churn\Event\Event\AfterAnalysis as AfterAnalysisEvent;
 
 /**
  * @internal
+ * @implements HookDecorator<\Churn\Event\Hook\AfterAnalysisHook>
  */
 class AfterAnalysisHookDecorator implements AfterAnalysis, HookDecorator
 {

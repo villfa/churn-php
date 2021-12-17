@@ -8,6 +8,7 @@ use Churn\Event\Event\BeforeAnalysis as BeforeAnalysisEvent;
 
 /**
  * @internal
+ * @implements HookDecorator<\Churn\Event\Hook\BeforeAnalysisHook>
  */
 class BeforeAnalysisHookDecorator implements BeforeAnalysis, HookDecorator
 {
