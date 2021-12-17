@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Churn\Event\Subscriber;
 
-use Churn\Event\Event\AfterAnalysis;
+use Churn\Event\Event\AfterAnalysis as AfterAnalysisEvent;
 
 /**
  * @internal
@@ -25,9 +25,9 @@ class AfterAnalysisHookDecorator implements AfterAnalysis, HookDecorator
     }
 
     /**
-     * @param AfterAnalysis $event The event triggered when the analysis is done.
+     * @param AfterAnalysisEvent $event The event triggered when the analysis is done.
      */
-    public function onAfterAnalysis(AfterAnalysis $event): void
+    public function onAfterAnalysis(AfterAnalysisEvent $event): void
     {
         \call_user_func([$this->hook, 'afterAnalysis'], $event);
     }

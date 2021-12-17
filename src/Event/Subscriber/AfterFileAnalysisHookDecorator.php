@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Churn\Event\Subscriber;
 
-use Churn\Event\Event\AfterFileAnalysis;
+use Churn\Event\Event\AfterFileAnalysis as AfterFileAnalysisEvent;
 
 /**
  * @internal
@@ -25,9 +25,9 @@ class AfterFileAnalysisHookDecorator implements AfterFileAnalysis, HookDecorator
     }
 
     /**
-     * @param AfterFileAnalysis $event The event triggered when the analysis of a file is done.
+     * @param AfterFileAnalysisEvent $event The event triggered when the analysis of a file is done.
      */
-    public function onAfterFileAnalysis(AfterFileAnalysis $event): void
+    public function onAfterFileAnalysis(AfterFileAnalysisEvent $event): void
     {
         \call_user_func([$this->hook, 'afterFileAnalysis'], $event);
     }
