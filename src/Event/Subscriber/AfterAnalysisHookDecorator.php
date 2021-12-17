@@ -18,7 +18,8 @@ class AfterAnalysisHookDecorator implements AfterAnalysis, HookDecorator
     private $hook;
 
     /**
-     * @param class-string<\Churn\Event\Hook\AfterAnalysisHook> $hook The user-defined hook class name.
+     * @param string $hook The user-defined hook class name.
+     * @psalm-param class-string<\Churn\Event\Hook\AfterAnalysisHook> $hook
      */
     public function __construct(string $hook)
     {

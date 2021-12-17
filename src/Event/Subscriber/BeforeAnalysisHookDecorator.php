@@ -18,7 +18,8 @@ class BeforeAnalysisHookDecorator implements BeforeAnalysis, HookDecorator
     private $hook;
 
     /**
-     * @param class-string<\Churn\Event\Hook\BeforeAnalysisHook> $hook The user-defined hook class name.
+     * @param string $hook The user-defined hook class name.
+     * @psalm-param class-string<\Churn\Event\Hook\BeforeAnalysisHook> $hook
      */
     public function __construct(string $hook)
     {
