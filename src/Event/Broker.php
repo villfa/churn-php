@@ -43,7 +43,7 @@ class Broker
     public function subscribe($subscriber): void
     {
         foreach ($this->channels as $channel) {
-            if (!$channel->accetps($subscriber)) {
+            if (!$channel->accepts($subscriber)) {
                 continue;
             }
 
