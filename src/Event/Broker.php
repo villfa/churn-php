@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Churn\Event;
 
-use Churn\Event\Channel;
 use Churn\Event\Channel\AfterAnalysisChannel;
 use Churn\Event\Channel\AfterFileAnalysisChannel;
 use Churn\Event\Channel\BeforeAnalysisChannel;
-use Closure;
 
 /**
  * @internal
@@ -21,7 +19,7 @@ class Broker
     private $subscribers = [];
 
     /**
-     * @var array<Channel>
+     * @var array<\Churn\Event\Channel>
      */
     private $channels;
 
