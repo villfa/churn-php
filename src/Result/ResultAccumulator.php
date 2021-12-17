@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Churn\Result;
 
 use Churn\Event\Event\AfterFileAnalysis as AfterFileAnalysisEvent;
+use Churn\Event\Event\AfterFileAnalysisEvent as AfterFileAnalysisEventWithResult;
 use Churn\Event\Subscriber\AfterFileAnalysis;
 
 /**
@@ -55,7 +56,9 @@ class ResultAccumulator implements AfterFileAnalysis
      */
     public function onAfterFileAnalysis(AfterFileAnalysisEvent $event): void
     {
-        $this->add($event->getResult());
+        if ($event instanceof AfterFileAnalysisEventWithResult) {
+            $this->add($event->getResult());
+        }
     }
 
     /**
