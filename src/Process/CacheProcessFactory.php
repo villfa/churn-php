@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Churn\Process;
 
-use Churn\Event\Event\AfterAnalysisEvent;
-use Churn\Event\Event\AfterFileAnalysisEvent;
+use Churn\Event\Event\AfterAnalysis as AfterAnalysisEvent;
+use Churn\Event\Event\AfterFileAnalysis as AfterFileAnalysisEvent;
 use Churn\Event\Subscriber\AfterAnalysis;
 use Churn\Event\Subscriber\AfterFileAnalysis;
 use Churn\File\File;

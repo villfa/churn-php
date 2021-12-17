@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Churn\Result;
 
-use Churn\Event\Event\AfterFileAnalysisEvent;
+use Churn\Event\Event\AfterFileAnalysis as AfterFileAnalysisEvent;
 use Churn\Event\Subscriber\AfterFileAnalysis;
 
 /**
