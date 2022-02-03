@@ -220,7 +220,7 @@ jobs:
         with:
           coverage: "none"
           ini-values: "error_reporting=-1, display_errors=On, display_startup_errors=On, zend.assertions=1"
-          php-version: "7.2"
+          php-version: "8.0"
           tools: composer:v2
 
       - name: Get composer cache directory
