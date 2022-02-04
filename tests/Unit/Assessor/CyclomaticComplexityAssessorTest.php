@@ -85,7 +85,7 @@ class CyclomaticComplexityAssessorTest extends BaseTestCase
     protected function assess($filename)
     {
         $contents = \file_get_contents($filename);
-        assert($contents !== false);
+        assert(false !== $contents);
 
         return (new CyclomaticComplexityAssessor())->assess($contents);
     }
