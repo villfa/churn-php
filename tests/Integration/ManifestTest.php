@@ -18,6 +18,6 @@ class ManifestTest extends BaseTestCase
         $manifest = ManifestLoader::fromFile($path);
 
         $this->assertEquals('bmitch/churn-php', $manifest->getName());
-        $this->assertGreaterThan(0, $manifest->getRequirements());
+        $this->assertGreaterThan(0, $manifest->getRequirements()->count());
     }
 }
