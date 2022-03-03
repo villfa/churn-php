@@ -10,6 +10,41 @@ namespace Churn\Assessor;
 class CyclomaticComplexityAssessor
 {
     /**
+     * @var array<int, int>
+     */
+    private $tokens = [
+        \T_CLASS => 1,
+        \T_INTERFACE => 1,
+        \T_TRAIT => 1,
+        \T_IF => 1,
+        \T_ELSEIF => 1,
+        \T_FOR => 1,
+        \T_FOREACH => 1,
+        \T_WHILE => 1,
+        \T_CASE => 1,
+        \T_CATCH => 1,
+        \T_BOOLEAN_AND => 1,
+        \T_LOGICAL_AND => 1,
+        \T_BOOLEAN_OR => 1,
+        \T_LOGICAL_OR => 1,
+        \T_COALESCE => 1,
+    ];
+
+    public function __construct()
+    {
+        // Since PHP 7.4
+        if (\defined('T_COALESCE_EQUAL')) {
+            $this->tokens[\T_COALESCE_EQUAL] = 1;
+        }
+        // Since PHP 8.1
+        if (!\defined('T_ENUM')) {
+            return;
+        }
+
+        $this->tokens[\T_ENUM] = 1;
+    }
+
+    /**
      * Assess the files cyclomatic complexity.
      *
      * @param string $contents The contents of a PHP file.
@@ -21,8 +56,13 @@ class CyclomaticComplexityAssessor
         foreach ($tokens as $token) {
             if (\is_array($token)) {
                 $score += $this->getComplexity($token[0]);
-            } elseif ('?' === $token) {
+
+                continue;
+            }
+            if ('?' === $token) {
                 $score += 1;
+
+                continue;
             }
         }
 
@@ -36,26 +76,6 @@ class CyclomaticComplexityAssessor
      */
     private function getComplexity(int $code): int
     {
-        switch ($code) {
-            case \T_CLASS:
-            case \T_INTERFACE:
-            case \T_TRAIT:
-            // T_ENUM (PHP 8.1)
-            case 336:
-            case \T_IF:
-            case \T_ELSEIF:
-            case \T_FOR:
-            case \T_FOREACH:
-            case \T_WHILE:
-            case \T_CASE:
-            case \T_CATCH:
-            case \T_BOOLEAN_AND:
-            case \T_LOGICAL_AND:
-            case \T_BOOLEAN_OR:
-            case \T_LOGICAL_OR:
-                return 1;
-            default:
-                return 0;
-        }
+        return $this->tokens[$code] ?? 0;
     }
 }
