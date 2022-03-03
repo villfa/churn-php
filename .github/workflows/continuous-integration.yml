@@ -17,7 +17,7 @@ jobs:
     name: "CI"
     runs-on: ${{ matrix.os }}
     # We want to run on external PRs, but not on our own internal PRs as they'll be run by the push to the branch.
-    #if: ${{ !(github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) }}
+    if: ${{ !(github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) }}
 
     strategy:
       matrix:
@@ -76,7 +76,7 @@ jobs:
     name: "Test VCS"
     runs-on: ubuntu-latest
     # We want to run on external PRs, but not on our own internal PRs as they'll be run by the push to the branch.
-    #if: ${{ !(github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) }}
+    if: ${{ !(github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) }}
 
     strategy:
       matrix:
@@ -193,7 +193,7 @@ jobs:
       - name: "Run Infection"
         run: |
           git fetch --depth=1 origin $GITHUB_BASE_REF
-          infection -j$(nproc) --logger-github --git-diff-filter=AM --git-diff-base=origin/$GITHUB_BASE_REF --ignore-msi-with-no-mutations --min-msi=70 --min-covered-msi=90
+          infection -j$(nproc) --logger-github --git-diff-filter=AM --git-diff-base=origin/$GITHUB_BASE_REF --ignore-msi-with-no-mutations --min-msi=85 --min-covered-msi=95
 
       - name: "Download other code coverage reports"
         uses: actions/download-artifact@v2
