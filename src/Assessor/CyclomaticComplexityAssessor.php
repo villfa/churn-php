@@ -30,18 +30,12 @@ class CyclomaticComplexityAssessor
         \T_COALESCE => 1,
     ];
 
+    /**
+     * Class constructor.
+     */
     public function __construct()
     {
-        // Since PHP 7.4
-        if (\defined('T_COALESCE_EQUAL')) {
-            $this->tokens[\T_COALESCE_EQUAL] = 1;
-        }
-        // Since PHP 8.1
-        if (!\defined('T_ENUM')) {
-            return;
-        }
-
-        $this->tokens[\T_ENUM] = 1;
+        $this->init();
     }
 
     /**
@@ -69,6 +63,27 @@ class CyclomaticComplexityAssessor
         return 0 === $score
             ? 1
             : $score;
+    }
+
+    /**
+     * Add missing tokens depending on the PHP version.
+     */
+    private function init(): void
+    {
+        foreach (
+            [
+            // Since PHP 7.4
+            'T_COALESCE_EQUAL',
+            // Since PHP 8.1
+            'T_ENUM',
+            ] as $token
+        ) {
+            if (!\defined($token)) {
+                continue;
+            }
+
+            $this->tokens[(int) \constant($token)] = 1;
+        }
     }
 
     /**
