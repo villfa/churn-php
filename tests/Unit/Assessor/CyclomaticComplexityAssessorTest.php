@@ -28,7 +28,7 @@ class CyclomaticComplexityAssessorTest extends BaseTestCase
 class EmptyClass
 {
 }
-EOC,
+EOC
         ];
 
         yield 'a class with one empty method' => [
@@ -41,7 +41,7 @@ class ClassWithOneEmptyMethod
     {
     }
 }
-EOC,
+EOC
         ];
 
         yield 'a class with a method containing one if statement' => [
@@ -59,7 +59,7 @@ class ClassWithOneMethodWithOneIf
         return false;
     }
 }
-EOC,
+EOC
         ];
 
         yield 'a class with a method containing a nested if statement' => [
@@ -79,7 +79,7 @@ class ClassWithOneMethodWithNestedIf
         return false;
     }
 }
-EOC,
+EOC
         ];
 
         yield 'a class with a method containing an if else if statement' => [
@@ -97,7 +97,7 @@ class ClassWithIfElseIf
         }
     }
 }
-EOC,
+EOC
         ];
 
         yield 'a class with a method containing a while loop' => [
@@ -113,7 +113,7 @@ class ClassWithWhileLoop
         }
     }
 }
-EOC,
+EOC
         ];
 
         yield 'a class with a method containing a for loop' => [
@@ -129,7 +129,7 @@ class ClassWithForLoop
         }
     }
 }
-EOC,
+EOC
         ];
 
         yield 'a class with a method a switch statement with 3 cases' => [
@@ -156,7 +156,7 @@ class ClassWithSwitch
         }
     }
 }
-EOC,
+EOC
         ];
 
         yield 'this class with many methods and many branches' => [
@@ -220,7 +220,7 @@ class LongClass
         }
     }
 }
-EOC,
+EOC
         ];
 
         yield 'a class with a ternary operator' => [
@@ -234,7 +234,7 @@ class ClassWithTernary
         $foo == 'bar' ? $baz++ : $zug;
     }
 }
-EOC,
+EOC
         ];
 
         yield 'a class with a logical AND' => [
@@ -248,7 +248,7 @@ class ClassWithLogicalAnd
         return ($a == $b && $c == $d);
     }
 }
-EOC,
+EOC
         ];
 
         yield 'a class with a logical OR' => [
@@ -262,7 +262,7 @@ class ClassWithLogicalOr
         return ($a == $b || $c == $d);
     }
 }
-EOC,
+EOC
         ];
     }
 }
