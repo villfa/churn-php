@@ -21,6 +21,11 @@ class CyclomaticComplexityAssessorTest extends BaseTestCase
 
     public function provide_assess(): iterable
     {
+        yield 'an empty file' => [
+            1,
+            ''
+        ];
+
         yield 'an empty class' => [
             1,
             <<<'EOC'
@@ -263,6 +268,16 @@ class ClassWithLogicalOr
     }
 }
 EOC
+        ];
+
+        yield 'syntax error' => [
+            1,
+            '<?php echo'
+        ];
+
+        yield 'file with commented code' => [
+            1,
+            '<?php // if (true) {if (true) {if (true) {if (true) {}}}}'
         ];
     }
 }
