@@ -70,14 +70,13 @@ class CyclomaticComplexityAssessor
      */
     private function init(): void
     {
-        foreach (
-            [
+        $tokens = [
             // Since PHP 7.4
             'T_COALESCE_EQUAL',
             // Since PHP 8.1
             'T_ENUM',
-            ] as $token
-        ) {
+        ];
+        foreach ($tokens as $token) {
             if (!\defined($token)) {
                 continue;
             }
