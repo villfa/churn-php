@@ -53,9 +53,11 @@ class CyclomaticComplexityAssessor
 
                 continue;
             }
-            if ('?' === $token) {
-                $score += 1;
+            if ('?' !== $token) {
+                continue;
             }
+
+            $score += 1;
         }
 
         return 0 === $score
