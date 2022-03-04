@@ -279,5 +279,17 @@ EOC
             1,
             '<?php // if (true) {if (true) {if (true) {if (true) {}}}}'
         ];
+
+        if (version_compare('7.4', PHP_VERSION, '>=')) {
+            yield 'file with coalesce equal operator' => [
+                3,
+                <<<'EOC'
+<?php
+$a ??= 'a';
+$a ??= 'a';
+$a ??= 'a';
+EOC
+            ];
+        }
     }
 }

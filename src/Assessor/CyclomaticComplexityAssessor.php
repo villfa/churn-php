@@ -55,8 +55,6 @@ class CyclomaticComplexityAssessor
             }
             if ('?' === $token) {
                 $score += 1;
-
-                continue;
             }
         }
 
