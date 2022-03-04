@@ -280,7 +280,7 @@ EOC
             '<?php // if (true) {if (true) {if (true) {if (true) {}}}}'
         ];
 
-        if (version_compare('7.4', PHP_VERSION, '>=')) {
+        if (version_compare(PHP_VERSION, '7.4.0', '>=')) {
             yield 'file with coalesce equal operator' => [
                 3,
                 <<<'EOC'
