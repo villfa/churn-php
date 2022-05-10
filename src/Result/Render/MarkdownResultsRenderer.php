@@ -23,10 +23,13 @@ final class MarkdownResultsRenderer implements ResultsRendererInterface
         $output->writeln('|------|---------------|------------|-------|');
 
         foreach ($results as $result) {
-            $output->writeln('| ' . \implode(' | ', $result) . ' |');
+            $output->writeln($this->inline($result));
         }
     }
 
+    /**
+     * @param array<float|integer|string> $data The data to inline.
+     */
     private function inline(array $data): string
     {
         $escapedData = array_map($data, function ($item) {
