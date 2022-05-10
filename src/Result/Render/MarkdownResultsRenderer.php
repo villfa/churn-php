@@ -19,11 +19,11 @@ final class MarkdownResultsRenderer implements ResultsRendererInterface
      */
     public function render(OutputInterface $output, array $results): void
     {
-        $output->write('| File | Times Changed | Complexity | Score |');
-        $output->write('|------|---------------|------------|-------|');
+        $output->writeln('| File | Times Changed | Complexity | Score |');
+        $output->writeln('|------|---------------|------------|-------|');
 
         foreach ($results as $result) {
-            $output->write('| ' . \implode(' | ', $result) . ' |');
+            $output->writeln('| ' . \implode(' | ', $result) . ' |');
         }
     }
 }
