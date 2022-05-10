@@ -32,8 +32,10 @@ final class MarkdownResultsRenderer implements ResultsRendererInterface
      */
     private function inline(array $data): string
     {
-        $escapedData = array_map(function ($item) {
-            return \is_string($item) ? \str_replace('|', '\\|', $item) : $item;
+        $escapedData = \array_map(static function ($item) {
+            return \is_string($item)
+                ? \str_replace('|', '\\|', $item)
+                : $item;
         }, $data);
 
         return '| ' . \implode(' | ', $escapedData) . ' |';
