@@ -18,7 +18,7 @@ class MarkdownResultsRendererTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_render_the_results_as_json()
+    public function it_can_render_the_results_as_markdown()
     {
         $results = [
             ['filename1.php', 5, 7, 0.625],
