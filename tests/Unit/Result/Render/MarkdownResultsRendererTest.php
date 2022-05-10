@@ -28,7 +28,7 @@ class MarkdownResultsRendererTest extends BaseTestCase
 
         $output = m::mock(OutputInterface::class);
         $output->shouldReceive('writeln')->once()->with('| File | Times Changed | Complexity | Score |');
-        $output->shouldReceive('writeln')->once()->with('|------|---------------|------------|-------|);
+        $output->shouldReceive('writeln')->once()->with('|------|---------------|------------|-------|');
         $output->shouldReceive('writeln')->once()->with('| filename1.php | 5 | 7 | 0.625 |');
         $output->shouldReceive('writeln')->once()->with('| path/filename2.php | 3 | 4 | 0.242 |');
         $output->shouldReceive('writeln')->once()->with('| pa\\|th/filename3.php | 1 | 5 | 0.08 |');
