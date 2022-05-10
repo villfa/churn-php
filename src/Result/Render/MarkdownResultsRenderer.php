@@ -23,7 +23,7 @@ final class MarkdownResultsRenderer implements ResultsRendererInterface
         $output->write('|------|---------------|------------|-------|');
 
         foreach ($results as $result) {
-            $output->write('| ' . implode(' | ', $result) . ' |');
+            $output->write('| ' . \implode(' | ', $result) . ' |');
         }
     }
 }
