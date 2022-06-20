@@ -20,7 +20,7 @@ final class HookLoader
 {
     /**
      * @var array<string, string>
-     * @psalm-var array<class-string<\Churn\Event\Subscriber\HookDecorator>, class-string>
+     * @psalm-var array<class-string<\Churn\Event\Subscriber\HookDecorator>, class-string<AfterAnalysisHook|AfterFileAnalysisHook|BeforeAnalysisHook>>
      */
     private $decorators;
 
