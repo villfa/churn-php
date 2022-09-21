@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Churn\Tests\Unit\Assessor\CyclomaticComplexity;
+namespace Churn\Tests\Unit\Assessor;
 
 use Churn\Tests\BaseTestCase;
 use Churn\Assessor\CyclomaticComplexityAssessor;
