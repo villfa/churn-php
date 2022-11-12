@@ -17,6 +17,7 @@ class ManifestTest extends BaseTestCase
 
         $manifest = ManifestLoader::fromFile($path);
 
+        // @phpstan-ignore-next-line
         $name = method_exists($manifest->getName(), 'asString') ? $manifest->getName()->asString() : (string) $manifest->getName();
         $this->assertSame('bmitch/churn-php', $name);
         $this->assertGreaterThan(0, $manifest->getRequirements()->count());

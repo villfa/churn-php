@@ -16,6 +16,8 @@ class FileHelperTest extends BaseTestCase
 
     protected function tearDown()
     {
+        parent::tearDown();
+
         (new Filesystem())->remove($this->filesToDelete);
     }
 

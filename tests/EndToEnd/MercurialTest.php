@@ -25,7 +25,9 @@ class MercurialTest extends BaseTestCase
 
     protected function tearDown()
     {
-        $this->commandTester = null;
+        parent::tearDown();
+
+        unset($this->commandTester);
     }
 
     /** @test */

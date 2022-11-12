@@ -11,6 +11,7 @@ use Churn\Process\CyclomaticComplexityInterface;
 use Churn\Process\ConcreteProcessFactory;
 use Churn\Tests\BaseTestCase;
 use InvalidArgumentException;
+use RuntimeException;
 
 class ConcreteProcessFactoryTest extends BaseTestCase
 {
@@ -19,7 +20,7 @@ class ConcreteProcessFactoryTest extends BaseTestCase
      */
     private $processFactory;
 
-    public function setup()
+    public function setUp()
     {
         $config = new ReadOnlyConfig();
         $this->processFactory = new ConcreteProcessFactory($config->getVCS(), $config->getCommitsSince());
@@ -31,7 +32,10 @@ class ConcreteProcessFactoryTest extends BaseTestCase
         $this->assertInstanceOf(ConcreteProcessFactory::class, $this->processFactory);
     }
 
-    private function extractChangesCountProcess(iterable $processes): ?ChangesCountInterface
+    /**
+     * @param iterable<object> $processes
+     */
+    private function extractChangesCountProcess(iterable $processes): ChangesCountInterface
     {
         foreach ($processes as $process) {
             if ($process instanceof ChangesCountInterface) {
@@ -39,10 +43,13 @@ class ConcreteProcessFactoryTest extends BaseTestCase
             }
         }
 
-        return null;
+        throw new RuntimeException('Changes Count process not found');
     }
 
-    private function extractCyclomaticComplexityProcess(iterable $processes): ?CyclomaticComplexityInterface
+    /**
+     * @param iterable<object> $processes
+     */
+    private function extractCyclomaticComplexityProcess(iterable $processes): CyclomaticComplexityInterface
     {
         foreach ($processes as $process) {
             if ($process instanceof CyclomaticComplexityInterface) {
@@ -50,7 +57,7 @@ class ConcreteProcessFactoryTest extends BaseTestCase
             }
         }
 
-        return null;
+        throw new RuntimeException('Cyclomatic Complexity process not found');
     }
 
     /** @test */

@@ -36,7 +36,9 @@ class RunCommandTest extends BaseTestCase
 
     protected function tearDown()
     {
-        $this->commandTester = null;
+        parent::tearDown();
+
+        unset($this->commandTester);
 
         if ($this->tmpFile !== null && \is_file($this->tmpFile)) {
             \unlink($this->tmpFile);
@@ -88,7 +90,8 @@ class RunCommandTest extends BaseTestCase
     /** @test */
     public function it_can_write_a_json_report()
     {
-        $this->tmpFile = \tempnam(\sys_get_temp_dir(), 'churn-test-');
+        $this->assertNotFalse($tmpFile = \tempnam(\sys_get_temp_dir(), 'churn-test-'));
+        $this->tmpFile = $tmpFile;
         $exitCode = $this->commandTester->execute([
             'paths' => [\realpath(__DIR__ . '/../../')],
             '--format' => 'json',
@@ -99,11 +102,15 @@ class RunCommandTest extends BaseTestCase
         $this->assertSame(0, $exitCode);
         $this->assertSame(RunCommand::LOGO, substr($display, 0, strlen(RunCommand::LOGO)));
 
-        $this->assertFileExists($this->tmpFile);
-        $data = \json_decode(\file_get_contents($this->tmpFile), true);
+        $this->assertFileExists($tmpFile);
+        $this->assertNotFalse($contents = \file_get_contents($tmpFile));
+        $data = \json_decode($contents, true);
         $this->assertReport($data);
     }
 
+    /**
+     * @param mixed $data
+     */
     private function assertReport($data): void
     {
         $this->assertTrue(is_array($data), 'Expected array, got ' . gettype($data) . ' (' . var_export($data, true) . ')');

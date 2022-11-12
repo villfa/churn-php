@@ -15,7 +15,7 @@ class LoaderTest extends BaseTestCase
     /** @test */
     public function it_returns_the_default_values_if_there_is_no_default_file()
     {
-        $cwd = \getcwd();
+        $this->assertNotFalse($cwd = \getcwd());
         try {
             chdir(__DIR__);
             $config = Loader::fromPath('churn.yml', true);
@@ -45,7 +45,7 @@ class LoaderTest extends BaseTestCase
     /** @test */
     public function it_fallbacks_on_the_distributed_file()
     {
-        $dirPath = \realpath(__DIR__ . '/config/dist');
+        $this->assertNotFalse($dirPath = \realpath(__DIR__ . '/config/dist'));
         $config = Loader::fromPath($dirPath, false);
 
         $this->assertEqualsCanonicalizing(new EditableConfig($dirPath . DIRECTORY_SEPARATOR . 'churn.yml.dist'), $config);
@@ -55,8 +55,9 @@ class LoaderTest extends BaseTestCase
     /** @test */
     public function it_fallbacks_on_the_default_distributed_file()
     {
-        $cwd = \getcwd();
-        $dirPath = \realpath(__DIR__ . '/config/dist');
+        $this->assertNotFalse($cwd = \getcwd());
+        $this->assertNotFalse($dirPath = \realpath(__DIR__ . '/config/dist'));
+
         try {
             chdir($dirPath);
             $config = Loader::fromPath('churn.yml', true);

@@ -28,13 +28,12 @@ class ParallelProcessHandlerTest extends BaseTestCase
     public function it_doesnt_call_the_observer_when_no_file()
     {
         $broker = m::mock(Broker::class);
+        $broker->shouldReceive('notify')->never();
+
         $processHandler = new ParallelProcessHandler(3, $broker);
         $processFactory = new ConcreteProcessFactory('none', '');
 
-        $observer = m::mock(OnSuccess::class);
-        $observer->shouldReceive('__invoke')->never();
-
-        $processHandler->process($this->getFileGenerator(), $processFactory, $observer);
+        $processHandler->process($this->getFileGenerator(), $processFactory);
     }
 
     /** @test */

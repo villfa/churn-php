@@ -17,7 +17,7 @@ class ResultTest extends BaseTestCase
      */
     protected $result;
 
-    public function setup()
+    public function setUp()
     {
         $this->result = new Result(new File('/filename.php', 'filename.php'));
         $this->result->setCommits(5);

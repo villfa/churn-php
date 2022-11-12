@@ -15,7 +15,7 @@ class FileFinderTest extends BaseTestCase
      */
     protected $fileFinder;
 
-    public function setup()
+    public function setUp()
     {
         $this->fileFinder = new FileFinder(['php'], [], __DIR__);
     }
