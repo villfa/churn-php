@@ -35,6 +35,9 @@ class ValidatorTest extends BaseTestCase
         self::assertSame($defaultValue, $getter($config));
     }
 
+    /**
+     * @return iterable<array{Validator, callable, mixed}>
+     */
     public function provide_validators_with_default_value(): iterable
     {
         yield 'CachePath' => [
@@ -107,6 +110,9 @@ class ValidatorTest extends BaseTestCase
         self::assertSame($value, $getter($config));
     }
 
+    /**
+     * @return iterable<array{Validator, callable, mixed}>
+     */
     public function provide_validators_with_given_value(): iterable
     {
         yield 'CachePath' => [
@@ -183,6 +189,9 @@ class ValidatorTest extends BaseTestCase
         self::assertNull($getter($config));
     }
 
+    /**
+     * @return iterable<array{Validator, callable}>
+     */
     public function provide_validators_accepting_null(): iterable
     {
         yield 'CachePath' => [
@@ -212,6 +221,9 @@ class ValidatorTest extends BaseTestCase
         $validator->validate($config, [$validator->getKey() => $invalidValue]);
     }
 
+    /**
+     * @return iterable<array{Validator, mixed, string}>
+     */
     public function provide_validators_with_invalid_value(): iterable
     {
         yield 'CachePath / int' => [new CachePath(), 123, 'Cache path should be a string'];

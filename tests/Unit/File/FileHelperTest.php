@@ -30,6 +30,9 @@ class FileHelperTest extends BaseTestCase
         self::assertSame($expectedPath, FileHelper::toAbsolutePath($path, $confPath));
     }
 
+    /**
+     * @return iterable<array{string, string, string}>
+     */
     public function provide_absolute_paths(): iterable
     {
         yield ['/tmp', '/path', '/tmp'];
@@ -50,6 +53,9 @@ class FileHelperTest extends BaseTestCase
         self::assertSame($expectedPath, FileHelper::toRelativePath($path, $confPath));
     }
 
+    /**
+     * @return iterable<array{string, string, string}>
+     */
     public function provide_relative_paths(): iterable
     {
         yield ['/tmp/file.php', '/tmp', 'file.php'];
@@ -75,6 +81,9 @@ class FileHelperTest extends BaseTestCase
         self::assertTrue(\is_dir($dirPath), "Directory should exist: " . $dirPath);
     }
 
+    /**
+     * @return iterable<array{string}>
+     */
     public function provide_writable_paths(): iterable
     {
         yield [__FILE__];
@@ -93,6 +102,9 @@ class FileHelperTest extends BaseTestCase
         FileHelper::ensureFileIsWritable($filePath);
     }
 
+    /**
+     * @return iterable<array{string}>
+     */
     public function provide_invalid_writable_paths(): iterable
     {
         yield [''];

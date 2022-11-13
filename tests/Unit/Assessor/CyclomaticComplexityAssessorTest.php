@@ -19,6 +19,9 @@ class CyclomaticComplexityAssessorTest extends BaseTestCase
         self::assertSame($expectedScore, $assessor->assess($code));
     }
 
+    /**
+     * @return iterable<array{int, string}>
+     */
     public function provide_assess(): iterable
     {
         yield 'an empty file' => [

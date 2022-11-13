@@ -43,6 +43,9 @@ class MaxScoreCheckerTest extends BaseTestCase
         );
     }
 
+    /**
+     * @return iterable<array{bool, ?float, ?float}>
+     */
     public function provide_arguments(): iterable
     {
         yield 'threshold and score are null' => [false, null, null];
@@ -79,6 +82,9 @@ class MaxScoreCheckerTest extends BaseTestCase
         self::assertTrue($checker->isOverThreshold($input, $output, $report));
     }
 
+    /**
+     * @return iterable<array{string, ?string}>
+     */
     public function provide_format_and_output(): iterable
     {
         yield 'format=text, output is null' => ['text', null];

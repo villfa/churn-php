@@ -32,6 +32,9 @@ class ProcessHandlerFactoryTest extends BaseTestCase
         self::assertSame($expectedClassName, get_class($processHandler));
     }
 
+    /**
+     * @return iterable<array{Config, string}>
+     */
     public function provide_config_with_process_handler(): iterable
     {
         $config = m::mock(Config::class);

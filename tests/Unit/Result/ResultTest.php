@@ -78,6 +78,9 @@ class ResultTest extends BaseTestCase
         self::assertFalse($result->isComplete());
     }
 
+    /**
+     * @return iterable<array{Result}>
+     */
     public function provide_uncomplete_result(): iterable
     {
         $file = new File('/filename.php', 'filename.php');
@@ -104,6 +107,9 @@ class ResultTest extends BaseTestCase
         $this->result->getScore($maxCommits, $maxComplexity);
     }
 
+    /**
+     * @return iterable<array{int, int}>
+     */
     public function provide_invalid_score(): iterable
     {
         yield [0, 0];

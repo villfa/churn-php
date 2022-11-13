@@ -14,7 +14,6 @@ parameters:
     - '/^Casting to .+ something that''s already/'
     - '/^Method Churn\\Tests.* has no return type specified.$/'
     - '/^Call to (static )?method PHPUnit\\.* will always evaluate to true.$/'
-    - '/^Method Churn\\Tests.* return type has no value type specified in iterable type iterable.$/'
 
   checkTooWideReturnTypesInProtectedAndPublicMethods: true
   checkUninitializedProperties: true
