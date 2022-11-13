@@ -29,7 +29,7 @@ class ConcreteProcessFactoryTest extends BaseTestCase
     /** @test */
     public function it_can_be_created()
     {
-        $this->assertInstanceOf(ConcreteProcessFactory::class, $this->processFactory);
+        self::assertInstanceOf(ConcreteProcessFactory::class, $this->processFactory);
     }
 
     /**
@@ -65,8 +65,8 @@ class ConcreteProcessFactoryTest extends BaseTestCase
     {
         $file = new File('foo/bar/baz.php', 'bar/baz.php');
         $process = $this->extractChangesCountProcess($this->processFactory->createProcesses($file));
-        $this->assertInstanceOf(ChangesCountInterface::class, $process);
-        $this->assertSame($file, $process->getFile());
+        self::assertInstanceOf(ChangesCountInterface::class, $process);
+        self::assertSame($file, $process->getFile());
     }
 
     /** @test */
@@ -74,8 +74,8 @@ class ConcreteProcessFactoryTest extends BaseTestCase
     {
         $file = new File('foo/bar/baz.php', 'bar/baz.php');
         $process = $this->extractCyclomaticComplexityProcess($this->processFactory->createProcesses($file));
-        $this->assertInstanceOf(CyclomaticComplexityInterface::class, $process);
-        $this->assertSame($file, $process->getFile());
+        self::assertInstanceOf(CyclomaticComplexityInterface::class, $process);
+        self::assertSame($file, $process->getFile());
     }
 
     /** @test */
@@ -93,7 +93,7 @@ class ConcreteProcessFactoryTest extends BaseTestCase
         $file = new File('foo/bar/baz.php', 'bar/baz.php');
         $this->processFactory = new ConcreteProcessFactory('none', '');
         $process = $this->extractChangesCountProcess($this->processFactory->createProcesses($file));
-        $this->assertSame($file, $process->getFile());
-        $this->assertSame(1, $process->countChanges());
+        self::assertSame($file, $process->getFile());
+        self::assertSame(1, $process->countChanges());
     }
 }

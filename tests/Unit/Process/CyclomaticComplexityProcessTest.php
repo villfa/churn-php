@@ -19,7 +19,7 @@ class CyclomaticComplexityProcessTest extends BaseTestCase
         $file = new File('foo/bar/baz.php', 'bar/baz.php');
         $process = new Process(['foo']);
         $churnProcess = new CyclomaticComplexityProcess($file, $process);
-        $this->assertInstanceOf(CyclomaticComplexityProcess::class, $churnProcess);
+        self::assertInstanceOf(CyclomaticComplexityProcess::class, $churnProcess);
     }
 
     /** @test */
@@ -39,7 +39,7 @@ class CyclomaticComplexityProcessTest extends BaseTestCase
         $process = m::mock(Process::class);
         $process->shouldReceive('getExitCode')->andReturn(0);
         $churnProcess = new CyclomaticComplexityProcess($file, $process);
-        $this->assertTrue($churnProcess->isSuccessful());
+        self::assertTrue($churnProcess->isSuccessful());
     }
 
     /** @test */
@@ -49,7 +49,7 @@ class CyclomaticComplexityProcessTest extends BaseTestCase
         $process = m::mock(Process::class);
         $process->shouldReceive('getExitCode')->andReturn(null);
         $churnProcess = new CyclomaticComplexityProcess($file, $process);
-        $this->assertFalse($churnProcess->isSuccessful());
+        self::assertFalse($churnProcess->isSuccessful());
     }
 
     /** @test */
@@ -72,7 +72,7 @@ class CyclomaticComplexityProcessTest extends BaseTestCase
         $file = new File('foo/bar/baz.php', 'bar/baz.php');
         $process = m::mock(Process::class);
         $churnProcess = new CyclomaticComplexityProcess($file, $process);
-        $this->assertSame($file, $churnProcess->getFile());
+        self::assertSame($file, $churnProcess->getFile());
     }
 
     /** @test */
@@ -82,6 +82,6 @@ class CyclomaticComplexityProcessTest extends BaseTestCase
         $process = m::mock(Process::class);
         $process->shouldReceive('getOutput')->andReturn('123');
         $churnProcess = new CyclomaticComplexityProcess($file, $process);
-        $this->assertSame(123, $churnProcess->getCyclomaticComplexity());
+        self::assertSame(123, $churnProcess->getCyclomaticComplexity());
     }
 }

@@ -22,32 +22,32 @@ class ResultsRendererFactoryTest extends BaseTestCase
     /** @test */
     public function it_can_be_created()
     {
-        $this->assertInstanceOf(ResultsRendererFactory::class, $this->factory);
+        self::assertInstanceOf(ResultsRendererFactory::class, $this->factory);
     }
 
     /** @test */
     public function it_returns_the_json_renderer_when_provided_json_format()
     {
-        $this->assertInstanceOf(JsonResultsRenderer::class, $this->factory->getRenderer('json'));
+        self::assertInstanceOf(JsonResultsRenderer::class, $this->factory->getRenderer('json'));
     }
 
     /** @test */
     public function it_returns_the_csv_renderer_when_provided_csv_format()
     {
-        $this->assertInstanceOf(CsvResultsRenderer::class, $this->factory->getRenderer('csv'));
+        self::assertInstanceOf(CsvResultsRenderer::class, $this->factory->getRenderer('csv'));
     }
 
     /** @test */
     public function it_returns_the_markdown_renderer_when_provided_markdown_format()
     {
-        $this->assertInstanceOf(MarkdownResultsRenderer::class, $this->factory->getRenderer('markdown'));
+        self::assertInstanceOf(MarkdownResultsRenderer::class, $this->factory->getRenderer('markdown'));
     }
 
     /** @test */
     public function it_returns_the_console_renderer_when_provided_text_format()
     {
         $factory = new ResultsRendererFactory();
-        $this->assertInstanceOf(ConsoleResultsRenderer::class, $this->factory->getRenderer('text'));
+        self::assertInstanceOf(ConsoleResultsRenderer::class, $this->factory->getRenderer('text'));
     }
 
     /** @test */

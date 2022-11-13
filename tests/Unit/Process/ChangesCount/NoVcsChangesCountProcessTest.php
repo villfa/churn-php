@@ -25,7 +25,7 @@ class NoVcsChangesCountProcessTest extends BaseTestCase
     /** @test */
     public function it_always_counts_one()
     {
-        $this->assertSame(1, $this->process->countChanges());
+        self::assertSame(1, $this->process->countChanges());
     }
 
     /** @test */
@@ -33,18 +33,18 @@ class NoVcsChangesCountProcessTest extends BaseTestCase
     {
         $process = clone $this->process;
         $process->start();
-        $this->assertEqualsCanonicalizing($this->process, $process);
+        self::assertEqualsCanonicalizing($this->process, $process);
     }
 
     /** @test */
     public function it_is_always_successful()
     {
-        $this->assertTrue($this->process->isSuccessful());
+        self::assertTrue($this->process->isSuccessful());
     }
 
     /** @test */
     public function it_can_return_the_file()
     {
-        $this->assertSame('/foo', $this->process->getFile()->getDisplayPath());
+        self::assertSame('/foo', $this->process->getFile()->getDisplayPath());
     }
 }

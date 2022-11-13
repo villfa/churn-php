@@ -27,7 +27,7 @@ class FileHelperTest extends BaseTestCase
      */
     public function it_can_return_absolute_path(string $path, string $confPath, string $expectedPath): void
     {
-        $this->assertSame($expectedPath, FileHelper::toAbsolutePath($path, $confPath));
+        self::assertSame($expectedPath, FileHelper::toAbsolutePath($path, $confPath));
     }
 
     public function provide_absolute_paths(): iterable
@@ -47,7 +47,7 @@ class FileHelperTest extends BaseTestCase
      */
     public function it_can_return_relative_path(string $path, string $confPath, string $expectedPath): void
     {
-        $this->assertSame($expectedPath, FileHelper::toRelativePath($path, $confPath));
+        self::assertSame($expectedPath, FileHelper::toRelativePath($path, $confPath));
     }
 
     public function provide_relative_paths(): iterable
@@ -72,7 +72,7 @@ class FileHelperTest extends BaseTestCase
 
         FileHelper::ensureFileIsWritable($filePath);
 
-        $this->assertTrue(\is_dir($dirPath), "Directory should exist: " . $dirPath);
+        self::assertTrue(\is_dir($dirPath), "Directory should exist: " . $dirPath);
     }
 
     public function provide_writable_paths(): iterable

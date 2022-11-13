@@ -14,7 +14,7 @@ class MarkdownResultsRendererTest extends BaseTestCase
     /** @test */
     public function it_can_be_instantiated()
     {
-        $this->assertInstanceOf(MarkdownResultsRenderer::class, new MarkdownResultsRenderer());
+        self::assertInstanceOf(MarkdownResultsRenderer::class, new MarkdownResultsRenderer());
     }
 
     /** @test */

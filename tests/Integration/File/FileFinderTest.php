@@ -19,7 +19,7 @@ class FileFinderTest extends BaseTestCase
     /** @test */
     public function it_can_be_instantiated()
     {
-        $this->assertInstanceOf(FileFinder::class, $this->fileFinder);
+        self::assertInstanceOf(FileFinder::class, $this->fileFinder);
     }
 
     /** @test */
@@ -27,8 +27,8 @@ class FileFinderTest extends BaseTestCase
     {
         $paths = [__DIR__];
         $results = iterator_to_array($this->fileFinder->getPhpFiles($paths), false);
-        $this->assertCount(1, $results);
-        $this->assertInstanceOf(File::class, $results[0]);
+        self::assertCount(1, $results);
+        self::assertInstanceOf(File::class, $results[0]);
     }
 
     public function setUp()

@@ -15,13 +15,13 @@ class LoaderTest extends BaseTestCase
     /** @test */
     public function it_returns_the_default_values_if_there_is_no_default_file()
     {
-        $this->assertNotFalse($cwd = \getcwd());
+        self::assertNotFalse($cwd = \getcwd());
         try {
             chdir(__DIR__);
             $config = Loader::fromPath('churn.yml', true);
 
-            $this->assertEqualsCanonicalizing(new ReadOnlyConfig(), $config);
-            $this->assertSame(\getcwd(), $config->getDirPath());
+            self::assertEqualsCanonicalizing(new ReadOnlyConfig(), $config);
+            self::assertSame(\getcwd(), $config->getDirPath());
         } finally {
             // restore cwd
             chdir($cwd);
@@ -45,25 +45,25 @@ class LoaderTest extends BaseTestCase
     /** @test */
     public function it_fallbacks_on_the_distributed_file()
     {
-        $this->assertNotFalse($dirPath = \realpath(__DIR__ . '/config/dist'));
+        self::assertNotFalse($dirPath = \realpath(__DIR__ . '/config/dist'));
         $config = Loader::fromPath($dirPath, false);
 
-        $this->assertEqualsCanonicalizing(new EditableConfig($dirPath . DIRECTORY_SEPARATOR . 'churn.yml.dist'), $config);
-        $this->assertSame($dirPath, $config->getDirPath());
+        self::assertEqualsCanonicalizing(new EditableConfig($dirPath . DIRECTORY_SEPARATOR . 'churn.yml.dist'), $config);
+        self::assertSame($dirPath, $config->getDirPath());
     }
 
     /** @test */
     public function it_fallbacks_on_the_default_distributed_file()
     {
-        $this->assertNotFalse($cwd = \getcwd());
-        $this->assertNotFalse($dirPath = \realpath(__DIR__ . '/config/dist'));
+        self::assertNotFalse($cwd = \getcwd());
+        self::assertNotFalse($dirPath = \realpath(__DIR__ . '/config/dist'));
 
         try {
             chdir($dirPath);
             $config = Loader::fromPath('churn.yml', true);
 
-            $this->assertEqualsCanonicalizing(new EditableConfig($dirPath . DIRECTORY_SEPARATOR . 'churn.yml.dist'), $config);
-            $this->assertSame($dirPath, $config->getDirPath());
+            self::assertEqualsCanonicalizing(new EditableConfig($dirPath . DIRECTORY_SEPARATOR . 'churn.yml.dist'), $config);
+            self::assertSame($dirPath, $config->getDirPath());
         } finally {
             // restore cwd
             chdir($cwd);

@@ -12,7 +12,6 @@ parameters:
   reportUnmatchedIgnoredErrors: true
   ignoreErrors:
     - '/^Casting to .+ something that''s already/'
-    - '/^Dynamic call to static method PHPUnit.*/'
     - '/^Method Churn\\Tests.* has no return type specified.$/'
     - '/^Call to (static )?method PHPUnit\\.* will always evaluate to true.$/'
     - '/^Method Churn\\Tests.* return type has no value type specified in iterable type iterable.$/'

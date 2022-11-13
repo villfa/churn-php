@@ -55,10 +55,10 @@ class RunCommandTest extends BaseTestCase
         ]);
         $display = $this->commandTester->getDisplay();
 
-        $this->assertSame(0, $exitCode);
-        $this->assertSame(RunCommand::LOGO, substr($display, 0, strlen(RunCommand::LOGO)));
+        self::assertSame(0, $exitCode);
+        self::assertSame(RunCommand::LOGO, substr($display, 0, strlen(RunCommand::LOGO)));
         // there is no progress bar by default
-        $this->assertFalse(strpos($display, self::BAR), 'The progress bar shouldn\'t be displayed');
+        self::assertFalse(strpos($display, self::BAR), 'The progress bar shouldn\'t be displayed');
     }
 
     /** @test */
@@ -70,11 +70,11 @@ class RunCommandTest extends BaseTestCase
         ]);
         $display = $this->commandTester->getDisplay();
 
-        $this->assertSame(0, $exitCode);
-        $this->assertSame(RunCommand::LOGO, substr($display, 0, strlen(RunCommand::LOGO)));
+        self::assertSame(0, $exitCode);
+        self::assertSame(RunCommand::LOGO, substr($display, 0, strlen(RunCommand::LOGO)));
         // the progress bar must be right after the logo
         $display = ltrim(substr($display, strlen(RunCommand::LOGO)));
-        $this->assertSame(self::BAR, substr($display, 0, strlen(self::BAR)));
+        self::assertSame(self::BAR, substr($display, 0, strlen(self::BAR)));
     }
 
     /** @test */
@@ -83,14 +83,14 @@ class RunCommandTest extends BaseTestCase
         $exitCode = $this->commandTester->execute(['paths' => [__DIR__], '--format' => 'json']);
         $data = \json_decode($this->commandTester->getDisplay(), true);
 
-        $this->assertSame(0, $exitCode);
-        $this->assertReport($data);
+        self::assertSame(0, $exitCode);
+        self::assertReport($data);
     }
 
     /** @test */
     public function it_can_write_a_json_report()
     {
-        $this->assertNotFalse($tmpFile = \tempnam(\sys_get_temp_dir(), 'churn-test-'));
+        self::assertNotFalse($tmpFile = \tempnam(\sys_get_temp_dir(), 'churn-test-'));
         $this->tmpFile = $tmpFile;
         $exitCode = $this->commandTester->execute([
             'paths' => [\realpath(__DIR__ . '/../../')],
@@ -99,28 +99,28 @@ class RunCommandTest extends BaseTestCase
         ]);
         $display = $this->commandTester->getDisplay();
 
-        $this->assertSame(0, $exitCode);
-        $this->assertSame(RunCommand::LOGO, substr($display, 0, strlen(RunCommand::LOGO)));
+        self::assertSame(0, $exitCode);
+        self::assertSame(RunCommand::LOGO, substr($display, 0, strlen(RunCommand::LOGO)));
 
-        $this->assertFileExists($tmpFile);
-        $this->assertNotFalse($contents = \file_get_contents($tmpFile));
+        self::assertFileExists($tmpFile);
+        self::assertNotFalse($contents = \file_get_contents($tmpFile));
         $data = \json_decode($contents, true);
-        $this->assertReport($data);
+        self::assertReport($data);
     }
 
     /**
      * @param mixed $data
      */
-    private function assertReport($data): void
+    private static function assertReport($data): void
     {
-        $this->assertTrue(is_array($data), 'Expected array, got ' . gettype($data) . ' (' . var_export($data, true) . ')');
+        self::assertTrue(is_array($data), 'Expected array, got ' . gettype($data) . ' (' . var_export($data, true) . ')');
         $i = 0;
         foreach ($data as $key => $value) {
-            $this->assertSame($i++, $key);
-            $this->assertArrayHasKey('file', $value);
-            $this->assertArrayHasKey('commits', $value);
-            $this->assertArrayHasKey('complexity', $value);
-            $this->assertArrayHasKey('score', $value);
+            self::assertSame($i++, $key);
+            self::assertArrayHasKey('file', $value);
+            self::assertArrayHasKey('commits', $value);
+            self::assertArrayHasKey('complexity', $value);
+            self::assertArrayHasKey('score', $value);
         }
     }
 
@@ -162,7 +162,7 @@ class RunCommandTest extends BaseTestCase
         if (is_file($cachePath)) {
             unlink($cachePath);
         }
-        $this->assertFalse(file_exists($cachePath), "File $cachePath shouldn't exist");
+        self::assertFalse(file_exists($cachePath), "File $cachePath shouldn't exist");
 
         // generate cache
         $exitCode = $this->commandTester->execute([
@@ -171,9 +171,9 @@ class RunCommandTest extends BaseTestCase
         ]);
         $displayBeforeCache = $this->commandTester->getDisplay();
 
-        $this->assertSame(0, $exitCode);
-        $this->assertTrue(file_exists($cachePath), "File $cachePath should exist");
-        $this->assertGreaterThan(0, filesize($cachePath), 'Cache file is empty');
+        self::assertSame(0, $exitCode);
+        self::assertTrue(file_exists($cachePath), "File $cachePath should exist");
+        self::assertGreaterThan(0, filesize($cachePath), 'Cache file is empty');
 
         // use cache
         $exitCode = $this->commandTester->execute([
@@ -182,10 +182,10 @@ class RunCommandTest extends BaseTestCase
         ]);
         $displayAfterCache = $this->commandTester->getDisplay();
 
-        $this->assertSame(0, $exitCode);
-        $this->assertSame($displayBeforeCache, $displayAfterCache);
-        $this->assertTrue(file_exists($cachePath), "File $cachePath should exist");
-        $this->assertGreaterThan(0, filesize($cachePath), 'Cache file is empty');
+        self::assertSame(0, $exitCode);
+        self::assertSame($displayBeforeCache, $displayAfterCache);
+        self::assertTrue(file_exists($cachePath), "File $cachePath should exist");
+        self::assertGreaterThan(0, filesize($cachePath), 'Cache file is empty');
     }
 
     /** @test */
@@ -198,10 +198,10 @@ class RunCommandTest extends BaseTestCase
             '-c' => __DIR__ . '/config/hook-by-classname.yml',
         ]);
 
-        $this->assertSame(0, $exitCode);
-        $this->assertSame(1, TestHook::$nbAfterAnalysisEvent);
-        $this->assertSame(2, TestHook::$nbAfterFileAnalysisEvent);
-        $this->assertSame(1, TestHook::$nbBeforeAnalysisEvent);
+        self::assertSame(0, $exitCode);
+        self::assertSame(1, TestHook::$nbAfterAnalysisEvent);
+        self::assertSame(2, TestHook::$nbAfterFileAnalysisEvent);
+        self::assertSame(1, TestHook::$nbBeforeAnalysisEvent);
     }
 
     /** @test */
@@ -212,10 +212,10 @@ class RunCommandTest extends BaseTestCase
             '-c' => __DIR__ . '/config/hook-by-path.yml',
         ]);
 
-        $this->assertSame(0, $exitCode);
-        $this->assertSame(1, TestAfterAnalysisHook::$nbAfterAnalysisEvent);
-        $this->assertSame(2, TestAfterFileAnalysisHook::$nbAfterFileAnalysisEvent);
-        $this->assertSame(1, TestBeforeAnalysisHook::$nbBeforeAnalysisEvent);
+        self::assertSame(0, $exitCode);
+        self::assertSame(1, TestAfterAnalysisHook::$nbAfterAnalysisEvent);
+        self::assertSame(2, TestAfterFileAnalysisHook::$nbAfterFileAnalysisEvent);
+        self::assertSame(1, TestBeforeAnalysisHook::$nbBeforeAnalysisEvent);
     }
 
     /** @test */
@@ -243,8 +243,8 @@ class RunCommandTest extends BaseTestCase
         $display = ob_get_contents();
         ob_end_clean();
 
-        $this->assertSame(0, $exitCode);
-        $this->assertSame('Churn: DONE', $display);
+        self::assertSame(0, $exitCode);
+        self::assertSame('Churn: DONE', $display);
     }
 
     /** @test */
@@ -256,8 +256,8 @@ class RunCommandTest extends BaseTestCase
         ], ['capture_stderr_separately' => true]);
         $display = $this->commandTester->getErrorOutput();
 
-        $this->assertSame(1, $exitCode);
-        $this->assertStringContainsString('Max score is over the threshold', $display);
+        self::assertSame(1, $exitCode);
+        self::assertStringContainsString('Max score is over the threshold', $display);
     }
 
     /** @test */
@@ -269,8 +269,8 @@ class RunCommandTest extends BaseTestCase
         ], ['capture_stderr_separately' => true]);
         $display = $this->commandTester->getErrorOutput();
 
-        $this->assertSame(0, $exitCode);
-        $this->assertStringContainsString('Unrecognized configuration keys: foo, bar', $display);
+        self::assertSame(0, $exitCode);
+        self::assertStringContainsString('Unrecognized configuration keys: foo, bar', $display);
     }
 
     /** @test */
@@ -284,8 +284,8 @@ class RunCommandTest extends BaseTestCase
         $display = $this->commandTester->getErrorOutput();
         $data = \json_decode($this->commandTester->getDisplay(), true);
 
-        $this->assertSame(0, $exitCode);
-        $this->assertReport($data);
-        $this->assertStringContainsString('Unrecognized configuration keys: foo, bar', $display);
+        self::assertSame(0, $exitCode);
+        self::assertReport($data);
+        self::assertStringContainsString('Unrecognized configuration keys: foo, bar', $display);
     }
 }

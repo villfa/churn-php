@@ -21,7 +21,7 @@ class ParallelProcessHandlerTest extends BaseTestCase
     public function it_can_be_instantiated()
     {
         $broker = m::mock(Broker::class);
-        $this->assertInstanceOf(ParallelProcessHandler::class, new ParallelProcessHandler(2, $broker));
+        self::assertInstanceOf(ParallelProcessHandler::class, new ParallelProcessHandler(2, $broker));
     }
 
     /** @test */

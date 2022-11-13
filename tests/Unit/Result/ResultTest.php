@@ -27,37 +27,37 @@ class ResultTest extends BaseTestCase
     /** @test */
     public function it_can_be_created()
     {
-        $this->assertInstanceOf(Result::class, $this->result);
+        self::assertInstanceOf(Result::class, $this->result);
     }
 
     /** @test */
     public function it_can_return_the_file()
     {
-        $this->assertSame('filename.php', $this->result->getFile()->getDisplayPath());
+        self::assertSame('filename.php', $this->result->getFile()->getDisplayPath());
     }
 
     /** @test */
     public function it_is_complete()
     {
-        $this->assertTrue($this->result->isComplete());
+        self::assertTrue($this->result->isComplete());
     }
 
     /** @test */
     public function it_can_return_the_commits()
     {
-        $this->assertSame(5, $this->result->getCommits());
+        self::assertSame(5, $this->result->getCommits());
     }
 
     /** @test */
     public function it_can_return_the_complexity()
     {
-        $this->assertSame(7, $this->result->getComplexity());
+        self::assertSame(7, $this->result->getComplexity());
     }
 
     /** @test */
     public function it_can_return_the_priority()
     {
-        $this->assertSame(5 * 7, $this->result->getPriority());
+        self::assertSame(5 * 7, $this->result->getPriority());
     }
 
     /** @test */
@@ -66,7 +66,7 @@ class ResultTest extends BaseTestCase
         $maxCommits = 10;
         $maxComplexity = 10;
 
-        $this->assertSame(0.417, $this->result->getScore($maxCommits, $maxComplexity));
+        self::assertSame(0.417, $this->result->getScore($maxCommits, $maxComplexity));
     }
 
     /**
@@ -75,7 +75,7 @@ class ResultTest extends BaseTestCase
      */
     public function it_returns_false_when_uncomplete(Result $result)
     {
-        $this->assertFalse($result->isComplete());
+        self::assertFalse($result->isComplete());
     }
 
     public function provide_uncomplete_result(): iterable

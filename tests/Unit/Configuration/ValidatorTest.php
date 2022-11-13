@@ -32,7 +32,7 @@ class ValidatorTest extends BaseTestCase
         $config = new EditableConfig();
         $validator->validate($config, []);
 
-        $this->assertSame($defaultValue, $getter($config));
+        self::assertSame($defaultValue, $getter($config));
     }
 
     public function provide_validators_with_default_value(): iterable
@@ -104,7 +104,7 @@ class ValidatorTest extends BaseTestCase
         $config = new EditableConfig();
         $validator->validate($config, [$validator->getKey() => $value]);
 
-        $this->assertSame($value, $getter($config));
+        self::assertSame($value, $getter($config));
     }
 
     public function provide_validators_with_given_value(): iterable
@@ -180,7 +180,7 @@ class ValidatorTest extends BaseTestCase
 
         $validator->validate($config, [$validator->getKey() => null]);
 
-        $this->assertNull($getter($config));
+        self::assertNull($getter($config));
     }
 
     public function provide_validators_accepting_null(): iterable
@@ -252,13 +252,13 @@ class ValidatorTest extends BaseTestCase
             $validator = new CommitsSince();
             $validator->validate($config, ['commitSince' => 'one day ago']);
 
-            $this->assertSame('one day ago', $config->getCommitsSince());
-            $this->assertSame('commitSince', $validator->getKey());
+            self::assertSame('one day ago', $config->getCommitsSince());
+            self::assertSame('commitSince', $validator->getKey());
 	} finally {
             restore_error_handler();
         }
 
-        $this->assertSame(
+        self::assertSame(
             'The "commitSince" configuration key is deprecated and won\'t be supported'
             . ' in the next major version anymore. Use "commitsSince" instead.',
             $deprecationMessage

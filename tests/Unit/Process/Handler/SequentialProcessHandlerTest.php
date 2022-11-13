@@ -20,7 +20,7 @@ class SequentialProcessHandlerTest extends BaseTestCase
     public function it_can_be_instantiated()
     {
         $broker = m::mock(Broker::class);
-        $this->assertInstanceOf(SequentialProcessHandler::class, new SequentialProcessHandler($broker));
+        self::assertInstanceOf(SequentialProcessHandler::class, new SequentialProcessHandler($broker));
     }
 
     /** @test */

@@ -14,7 +14,7 @@ class ReadOnlyConfigTest extends BaseTestCase
     /** @test */
     public function it_can_be_instantiated_without_any_parameters()
     {
-        $this->assertInstanceOf(Config::class, new ReadOnlyConfig());
+        self::assertInstanceOf(Config::class, new ReadOnlyConfig());
     }
 
     /** @test */
@@ -22,7 +22,7 @@ class ReadOnlyConfigTest extends BaseTestCase
     {
         $config = new ReadOnlyConfig();
 
-        $this->assertSame(\getcwd(), $config->getDirPath());
+        self::assertSame(\getcwd(), $config->getDirPath());
     }
 
     /** @test */
@@ -30,6 +30,6 @@ class ReadOnlyConfigTest extends BaseTestCase
     {
         $config = new ReadOnlyConfig('/path/to/config/file.yml');
 
-        $this->assertSame('/path/to/config', $config->getDirPath());
+        self::assertSame('/path/to/config', $config->getDirPath());
     }
 }

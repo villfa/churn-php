@@ -14,7 +14,7 @@ class JsonResultsRendererTest extends BaseTestCase
     /** @test */
     public function it_can_be_instantiated()
     {
-        $this->assertInstanceOf(JsonResultsRenderer::class, new JsonResultsRenderer());
+        self::assertInstanceOf(JsonResultsRenderer::class, new JsonResultsRenderer());
     }
 
     /** @test */

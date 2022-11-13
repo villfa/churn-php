@@ -14,7 +14,7 @@ class CsvResultsRendererTest extends BaseTestCase
     /** @test */
     public function it_can_be_instantiated()
     {
-        $this->assertInstanceOf(CsvResultsRenderer::class, new CsvResultsRenderer());
+        self::assertInstanceOf(CsvResultsRenderer::class, new CsvResultsRenderer());
     }
 
     /** @test */
