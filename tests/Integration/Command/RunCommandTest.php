@@ -26,14 +26,18 @@ class RunCommandTest extends BaseTestCase
     /** @var string|null */
     private $tmpFile;
 
+    /** @return void */
     protected function setUp()
     {
+        parent::setUp();
+
         $application = new Application('churn-php', 'test');
         $application->add(RunCommand::newInstance());
         $command = $application->find('run');
         $this->commandTester = new CommandTester($command);
     }
 
+    /** @return void */
     protected function tearDown()
     {
         parent::tearDown();
@@ -47,7 +51,7 @@ class RunCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_displays_the_logo_at_the_beginning_by_default()
+    public function it_displays_the_logo_at_the_beginning_by_default(): void
     {
         $exitCode = $this->commandTester->execute([
             'paths' => [__DIR__],
@@ -62,7 +66,7 @@ class RunCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_show_a_progress_bar()
+    public function it_can_show_a_progress_bar(): void
     {
         $exitCode = $this->commandTester->execute([
             'paths' => [__DIR__],
@@ -78,7 +82,7 @@ class RunCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_return_a_json_report()
+    public function it_can_return_a_json_report(): void
     {
         $exitCode = $this->commandTester->execute(['paths' => [__DIR__], '--format' => 'json']);
         $data = \json_decode($this->commandTester->getDisplay(), true);
@@ -88,7 +92,7 @@ class RunCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_write_a_json_report()
+    public function it_can_write_a_json_report(): void
     {
         self::assertNotFalse($tmpFile = \tempnam(\sys_get_temp_dir(), 'churn-test-'));
         $this->tmpFile = $tmpFile;
@@ -274,7 +278,7 @@ class RunCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_return_a_json_report_and_also_warn()
+    public function it_can_return_a_json_report_and_also_warn(): void
     {
         $exitCode = $this->commandTester->execute([
             'paths' => [__DIR__],

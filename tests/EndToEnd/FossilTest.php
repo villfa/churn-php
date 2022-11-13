@@ -15,14 +15,18 @@ class FossilTest extends BaseTestCase
     /** @var CommandTester */
     private $commandTester;
 
+    /** @return void */
     protected function setUp()
     {
+        parent::setUp();
+
         $application = new Application('churn-php', 'test');
         $application->add(RunCommand::newInstance());
         $command = $application->find('run');
         $this->commandTester = new CommandTester($command);
     }
 
+    /** @return void */
     protected function tearDown()
     {
         parent::tearDown();
@@ -31,7 +35,7 @@ class FossilTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_works_with_fossil()
+    public function it_works_with_fossil(): void
     {
         $exitCode = $this->commandTester->execute([
             'paths' => [],

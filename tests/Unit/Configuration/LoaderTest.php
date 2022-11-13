@@ -13,7 +13,7 @@ use InvalidArgumentException;
 class LoaderTest extends BaseTestCase
 {
     /** @test */
-    public function it_returns_the_default_values_if_there_is_no_default_file()
+    public function it_returns_the_default_values_if_there_is_no_default_file(): void
     {
         self::assertNotFalse($cwd = \getcwd());
         try {
@@ -29,21 +29,21 @@ class LoaderTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_throws_if_the_chosen_file_is_missing()
+    public function it_throws_if_the_chosen_file_is_missing(): void
     {
         $this->expectException(InvalidArgumentException::class);
         Loader::fromPath('non-existing-config-file.yml', false);
     }
 
     /** @test */
-    public function it_throws_if_the_content_is_invalid()
+    public function it_throws_if_the_content_is_invalid(): void
     {
         $this->expectException(InvalidArgumentException::class);
         Loader::fromPath(__FILE__, false);
     }
 
     /** @test */
-    public function it_fallbacks_on_the_distributed_file()
+    public function it_fallbacks_on_the_distributed_file(): void
     {
         self::assertNotFalse($dirPath = \realpath(__DIR__ . '/config/dist'));
         $config = Loader::fromPath($dirPath, false);
@@ -53,7 +53,7 @@ class LoaderTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_fallbacks_on_the_default_distributed_file()
+    public function it_fallbacks_on_the_default_distributed_file(): void
     {
         self::assertNotFalse($cwd = \getcwd());
         self::assertNotFalse($dirPath = \realpath(__DIR__ . '/config/dist'));

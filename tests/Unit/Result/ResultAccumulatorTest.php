@@ -25,7 +25,7 @@ class ResultAccumulatorTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_returns_max_commits()
+    public function it_returns_max_commits(): void
     {
         $accumulator = new ResultAccumulator(10, 0.1);
         $accumulator->add($this->mockResult(2, 1, 'file'));

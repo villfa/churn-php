@@ -17,6 +17,7 @@ class ResultTest extends BaseTestCase
      */
     protected $result;
 
+    /** @return void */
     public function setUp()
     {
         $this->result = new Result(new File('/filename.php', 'filename.php'));
@@ -25,43 +26,43 @@ class ResultTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_be_created()
+    public function it_can_be_created(): void
     {
         self::assertInstanceOf(Result::class, $this->result);
     }
 
     /** @test */
-    public function it_can_return_the_file()
+    public function it_can_return_the_file(): void
     {
         self::assertSame('filename.php', $this->result->getFile()->getDisplayPath());
     }
 
     /** @test */
-    public function it_is_complete()
+    public function it_is_complete(): void
     {
         self::assertTrue($this->result->isComplete());
     }
 
     /** @test */
-    public function it_can_return_the_commits()
+    public function it_can_return_the_commits(): void
     {
         self::assertSame(5, $this->result->getCommits());
     }
 
     /** @test */
-    public function it_can_return_the_complexity()
+    public function it_can_return_the_complexity(): void
     {
         self::assertSame(7, $this->result->getComplexity());
     }
 
     /** @test */
-    public function it_can_return_the_priority()
+    public function it_can_return_the_priority(): void
     {
         self::assertSame(5 * 7, $this->result->getPriority());
     }
 
     /** @test */
-    public function it_can_calculate_the_score()
+    public function it_can_calculate_the_score(): void
     {
         $maxCommits = 10;
         $maxComplexity = 10;
@@ -73,7 +74,7 @@ class ResultTest extends BaseTestCase
      * @test
      * @dataProvider provide_uncomplete_result
      */
-    public function it_returns_false_when_uncomplete(Result $result)
+    public function it_returns_false_when_uncomplete(Result $result): void
     {
         self::assertFalse($result->isComplete());
     }
@@ -100,7 +101,7 @@ class ResultTest extends BaseTestCase
      * @test
      * @dataProvider provide_invalid_score
      */
-    public function it_throws_when_score_is_invalid(int $maxCommits, int $maxComplexity)
+    public function it_throws_when_score_is_invalid(int $maxCommits, int $maxComplexity): void
     {
         $this->expectException(InvalidArgumentException::class);
 

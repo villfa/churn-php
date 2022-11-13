@@ -12,7 +12,6 @@ parameters:
   reportUnmatchedIgnoredErrors: true
   ignoreErrors:
     - '/^Casting to .+ something that''s already/'
-    - '/^Method Churn\\Tests.* has no return type specified.$/'
     - '/^Call to (static )?method PHPUnit\\.* will always evaluate to true.$/'
 
   checkTooWideReturnTypesInProtectedAndPublicMethods: true

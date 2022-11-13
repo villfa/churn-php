@@ -12,7 +12,7 @@ use Mockery as m;
 class HighestScoresTest extends BaseTestCase
 {
     /** @test */
-    public function it_keeps_results_sorted_by_priority()
+    public function it_keeps_results_sorted_by_priority(): void
     {
         $scores = new HighestScores(10);
         $scores->add(m::mock(ResultInterface::class, ['getPriority' => 2]));
@@ -28,7 +28,7 @@ class HighestScoresTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_keeps_ony_the_highest_priorities()
+    public function it_keeps_ony_the_highest_priorities(): void
     {
         $scores = new HighestScores(3);
         $scores->add(m::mock(ResultInterface::class, ['getPriority' => 4]));

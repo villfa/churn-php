@@ -14,6 +14,7 @@ class FileTest extends BaseTestCase
      **/
     private $file;
 
+    /** @return void */
     public function setUp()
     {
         parent::setUp();
@@ -22,13 +23,13 @@ class FileTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_instantiated(): void
     {
         self::assertInstanceOf(File::class, $this->file);
     }
 
     /** @test */
-    public function it_can_return_its_values()
+    public function it_can_return_its_values(): void
     {
         self::assertSame('foo/bar/baz.php', $this->file->getFullPath());
         self::assertSame('bar/baz.php', $this->file->getDisplayPath());

@@ -10,7 +10,7 @@ use PharIo\Manifest\ManifestLoader;
 class ManifestTest extends BaseTestCase
 {
     /** @test */
-    public function manifest_is_valid()
+    public function manifest_is_valid(): void
     {
         $path = __DIR__ . '/../../manifest.xml';
         self::assertTrue(is_file($path), 'manifest.xml not found');

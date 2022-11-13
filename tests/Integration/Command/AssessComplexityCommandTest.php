@@ -14,14 +14,18 @@ class AssessComplexityCommandTest extends BaseTestCase
     /** @var CommandTester */
     private $commandTester;
 
+    /** @return void */
     protected function setUp()
     {
+        parent::setUp();
+
         $application = new Application('churn-php', 'test');
         $application->add(AssessComplexityCommand::newInstance());
         $command = $application->find('assess-complexity');
         $this->commandTester = new CommandTester($command);
     }
 
+    /** @return void */
     protected function tearDown()
     {
         parent::tearDown();
@@ -30,7 +34,7 @@ class AssessComplexityCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_returns_the_cyclomatic_complexity_greater_than_zero()
+    public function it_returns_the_cyclomatic_complexity_greater_than_zero(): void
     {
         $exitCode = $this->commandTester->execute(['file' => __FILE__]);
         $result = \rtrim($this->commandTester->getDisplay());
@@ -41,7 +45,7 @@ class AssessComplexityCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_returns_zero_for_non_existing_file()
+    public function it_returns_zero_for_non_existing_file(): void
     {
         $exitCode = $this->commandTester->execute(['file' => 'nonexisting-file.php']);
         $result = \rtrim($this->commandTester->getDisplay());

@@ -20,6 +20,7 @@ class ConcreteProcessFactoryTest extends BaseTestCase
      */
     private $processFactory;
 
+    /** @return void */
     public function setUp()
     {
         $config = new ReadOnlyConfig();
@@ -27,7 +28,7 @@ class ConcreteProcessFactoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_be_created()
+    public function it_can_be_created(): void
     {
         self::assertInstanceOf(ConcreteProcessFactory::class, $this->processFactory);
     }
@@ -61,7 +62,7 @@ class ConcreteProcessFactoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_create_a_git_commit_count_process()
+    public function it_can_create_a_git_commit_count_process(): void
     {
         $file = new File('foo/bar/baz.php', 'bar/baz.php');
         $process = $this->extractChangesCountProcess($this->processFactory->createProcesses($file));
@@ -70,7 +71,7 @@ class ConcreteProcessFactoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_create_a_cyclomatic_complexity_process()
+    public function it_can_create_a_cyclomatic_complexity_process(): void
     {
         $file = new File('foo/bar/baz.php', 'bar/baz.php');
         $process = $this->extractCyclomaticComplexityProcess($this->processFactory->createProcesses($file));
@@ -79,7 +80,7 @@ class ConcreteProcessFactoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_throws_exception_if_VCS_is_not_supported()
+    public function it_throws_exception_if_VCS_is_not_supported(): void
     {
         $config = new ReadOnlyConfig();
         $this->expectException(InvalidArgumentException::class);
@@ -88,7 +89,7 @@ class ConcreteProcessFactoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_always_counts_one_when_there_is_no_VCS()
+    public function it_always_counts_one_when_there_is_no_VCS(): void
     {
         $file = new File('foo/bar/baz.php', 'bar/baz.php');
         $this->processFactory = new ConcreteProcessFactory('none', '');

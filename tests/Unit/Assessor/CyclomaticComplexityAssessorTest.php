@@ -12,7 +12,7 @@ class CyclomaticComplexityAssessorTest extends BaseTestCase
     /**
      * @dataProvider provide_assess
      */
-    public function test_assess(int $expectedScore, string $code)
+    public function test_assess(int $expectedScore, string $code): void
     {
         $assessor = new CyclomaticComplexityAssessor();
 
