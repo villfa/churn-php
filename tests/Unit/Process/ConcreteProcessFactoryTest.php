@@ -23,14 +23,10 @@ class ConcreteProcessFactoryTest extends BaseTestCase
     /** @return void */
     public function setUp()
     {
+        parent::setUp();
+
         $config = new ReadOnlyConfig();
         $this->processFactory = new ConcreteProcessFactory($config->getVCS(), $config->getCommitsSince());
-    }
-
-    /** @test */
-    public function it_can_be_created(): void
-    {
-        self::assertInstanceOf(ConcreteProcessFactory::class, $this->processFactory);
     }
 
     /**
@@ -66,7 +62,6 @@ class ConcreteProcessFactoryTest extends BaseTestCase
     {
         $file = new File('foo/bar/baz.php', 'bar/baz.php');
         $process = $this->extractChangesCountProcess($this->processFactory->createProcesses($file));
-        self::assertInstanceOf(ChangesCountInterface::class, $process);
         self::assertSame($file, $process->getFile());
     }
 
@@ -75,7 +70,6 @@ class ConcreteProcessFactoryTest extends BaseTestCase
     {
         $file = new File('foo/bar/baz.php', 'bar/baz.php');
         $process = $this->extractCyclomaticComplexityProcess($this->processFactory->createProcesses($file));
-        self::assertInstanceOf(CyclomaticComplexityInterface::class, $process);
         self::assertSame($file, $process->getFile());
     }
 

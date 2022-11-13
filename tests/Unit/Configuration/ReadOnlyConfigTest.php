@@ -12,12 +12,6 @@ use InvalidArgumentException;
 class ReadOnlyConfigTest extends BaseTestCase
 {
     /** @test */
-    public function it_can_be_instantiated_without_any_parameters(): void
-    {
-        self::assertInstanceOf(Config::class, new ReadOnlyConfig());
-    }
-
-    /** @test */
     public function it_returns_the_current_working_directory_by_default(): void
     {
         $config = new ReadOnlyConfig();

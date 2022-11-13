@@ -22,13 +22,9 @@ class ResultsRendererFactoryTest extends BaseTestCase
     /** @return void */
     public function setUp()
     {
-        $this->factory = new ResultsRendererFactory();
-    }
+        parent::setUp();
 
-    /** @test */
-    public function it_can_be_created(): void
-    {
-        self::assertInstanceOf(ResultsRendererFactory::class, $this->factory);
+        $this->factory = new ResultsRendererFactory();
     }
 
     /** @test */

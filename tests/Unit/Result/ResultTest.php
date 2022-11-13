@@ -20,15 +20,11 @@ class ResultTest extends BaseTestCase
     /** @return void */
     public function setUp()
     {
+        parent::setUp();
+
         $this->result = new Result(new File('/filename.php', 'filename.php'));
         $this->result->setCommits(5);
         $this->result->setComplexity(7);
-    }
-
-    /** @test */
-    public function it_can_be_created(): void
-    {
-        self::assertInstanceOf(Result::class, $this->result);
     }
 
     /** @test */

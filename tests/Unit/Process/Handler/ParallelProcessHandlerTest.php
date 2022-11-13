@@ -18,13 +18,6 @@ use Mockery as m;
 class ParallelProcessHandlerTest extends BaseTestCase
 {
     /** @test */
-    public function it_can_be_instantiated(): void
-    {
-        $broker = m::mock(Broker::class);
-        self::assertInstanceOf(ParallelProcessHandler::class, new ParallelProcessHandler(2, $broker));
-    }
-
-    /** @test */
     public function it_doesnt_call_the_observer_when_no_file(): void
     {
         $broker = m::mock(Broker::class);

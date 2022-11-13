@@ -17,13 +17,6 @@ use Mockery as m;
 class SequentialProcessHandlerTest extends BaseTestCase
 {
     /** @test */
-    public function it_can_be_instantiated(): void
-    {
-        $broker = m::mock(Broker::class);
-        self::assertInstanceOf(SequentialProcessHandler::class, new SequentialProcessHandler($broker));
-    }
-
-    /** @test */
     public function it_calls_the_broker_for_one_file(): void
     {
         $process1 = m::mock(ChangesCountInterface::class);

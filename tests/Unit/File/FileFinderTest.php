@@ -18,13 +18,9 @@ class FileFinderTest extends BaseTestCase
     /** @return void */
     public function setUp()
     {
-        $this->fileFinder = new FileFinder(['php'], [], __DIR__);
-    }
+        parent::setUp();
 
-    /** @test */
-    public function it_can_be_created(): void
-    {
-        self::assertInstanceOf(FileFinder::class, $this->fileFinder);
+        $this->fileFinder = new FileFinder(['php'], [], __DIR__);
     }
 
     /** @test */

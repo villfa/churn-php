@@ -19,6 +19,8 @@ class NoVcsChangesCountProcessTest extends BaseTestCase
     /** @return void */
     protected function setUp()
     {
+        parent::setUp();
+
         $file = new File('/foo', '/foo');
         $this->process = new NoVcsChangesCountProcess($file);
     }

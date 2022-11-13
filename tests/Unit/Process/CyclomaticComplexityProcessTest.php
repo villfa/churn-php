@@ -14,15 +14,6 @@ use Symfony\Component\Process\Process;
 class CyclomaticComplexityProcessTest extends BaseTestCase
 {
     /** @test */
-    public function it_can_be_instantiated(): void
-    {
-        $file = new File('foo/bar/baz.php', 'bar/baz.php');
-        $process = new Process(['foo']);
-        $churnProcess = new CyclomaticComplexityProcess($file, $process);
-        self::assertInstanceOf(CyclomaticComplexityProcess::class, $churnProcess);
-    }
-
-    /** @test */
     public function it_can_be_started(): void
     {
         $file = new File('foo/bar/baz.php', 'bar/baz.php');

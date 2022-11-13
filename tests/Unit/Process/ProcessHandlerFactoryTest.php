@@ -14,12 +14,6 @@ use Mockery as m;
 
 class ProcessHandlerFactoryTest extends BaseTestCase
 {
-    /** @test */
-    public function it_can_be_instantiated(): void
-    {
-        self::assertInstanceOf(ProcessHandlerFactory::class, new ProcessHandlerFactory());
-    }
-
     /**
      * @test
      * @dataProvider provide_config_with_process_handler
