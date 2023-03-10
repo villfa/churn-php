@@ -99,7 +99,9 @@ final class ConcreteProcessFactory implements ProcessFactory
     /** @return array<string> */
     private function getAssessorArguments(): array
     {
-        $fullPath = \class_exists(Phar::class, false) ? Phar::running(false) : '';
+        $fullPath = \class_exists(Phar::class, false)
+            ? Phar::running(false)
+            : '';
         if ('' !== $fullPath) {
             return [$fullPath, 'assess-complexity'];
         }
