@@ -161,8 +161,8 @@ final class RunCommandTest extends BaseTestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->commandTester->execute([
-            'paths' => [__DIR__],
             '--parallel' => 'foo',
+            'paths' => [__DIR__],
         ]);
     }
 
